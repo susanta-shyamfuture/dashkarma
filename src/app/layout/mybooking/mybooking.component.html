@@ -1,0 +1,213 @@
+<section class="innerbanner">
+  <img src="assets/img/contact.jpg" alt="">
+</section>
+<div class="editporfilebg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <app-sidebar></app-sidebar>
+
+      </div>
+      <div class="col-lg-9">
+        <h2>My Bookings</h2>
+        <!------------------------------------------------------>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12">
+
+
+              <mat-tab-group (selectedTabChange)="onSegmentChange($event)">
+                <mat-tab label="ONGOING">
+                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <div class="row">
+                        <div class="col-xs-12 col-md-6 col-sm-6" *ngFor="let order of orderarr; let i = index">
+                          <div class="row">
+                            <div class="historybox">
+                              <h2>{{order.order_details[0].category_name}}</h2>
+                              <h4>{{order.order_no}}</h4>
+                              <!-- <h4>July 21, 2019</h4> -->
+                              <h4>{{order.date_created | date: 'MMMM d, y, h:mm:ss a'}}</h4>
+                              <!-- <a  class="btn btn-info" role="button">Request Ongoing</a> -->
+                              <!-- <div [innerHtml]="order.order_details[0].category_description"></div> -->
+                              <!-- <p>{{order.order_details[0].category_description}}</p> -->
+                            </div>
+                            <div class="viewbooking">
+                              <button class="btn btn-info" type="button" (click)="gotoDetails(order)">
+                                VIEW BOOKING
+                              </button>
+                            </div>
+                            <!-- <div class="viewbooking" (click)="gotoDetails(order)">
+                              <a class="btn btn-info" role="button">VIEW BOOKING</a>
+                            </div> -->
+                          </div>
+                        </div>
+
+                        <div class="no-record" *ngIf="orderarr.length == 0">
+                          <img src="assets/img/no-record.png">
+                          <h3>No Bookings Found!!!!</h3>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                      Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim
+                      occaecat
+                      veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim.
+                      Velit
+                      non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non
+                      minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum
+                      in
+                      qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis
+                      reprehenderit occaecat anim ullamco ad duis occaecat ex.
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="HISTORY">
+                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <div class="row">
+                        <div class="col-xs-12 col-md-6 col-sm-6" *ngFor="let order of orderarr; let i = index">
+                          <div class="row">
+                            <div class="historybox">
+                              <h2>{{order.order_details[0].category_name}}</h2>
+                              <h4>{{order.order_no}}</h4>
+                              <!-- <h4>July 21, 2019</h4> -->
+                              <h4>{{order.date_created | date: 'MMMM d, y'}}</h4>
+                              <!-- <a  class="btn btn-info" role="button">Request Ongoing</a> -->
+                              <!-- <p>{{order.order_details[0].category_description}}</p> -->
+                              <!-- <div [innerHTML]="order.order_details[0].category_description"></div> -->
+                            </div>
+                            <!-- <div class="viewbooking" (click)="gotoDetails(order)"><a class="btn btn-info" role="button">VIEW BOOKING</a></div> -->
+                            <div class="viewbooking">
+                              <button class="btn btn-info" type="button" (click)="gotoDetails(order)">
+                                VIEW BOOKING
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="no-record" *ngIf="orderarr.length == 0">
+                          <img src="assets/img/no-record.png">
+                          <h3>No Bookings Found!!!!</h3>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                      Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim
+                      occaecat
+                      veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim.
+                      Velit
+                      non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non
+                      minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum
+                      in
+                      qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis
+                      reprehenderit occaecat anim ullamco ad duis occaecat ex.
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="CANCELED">
+                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <div class="row">
+                        <div class="col-xs-12 col-md-6 col-sm-6" *ngFor="let order of orderarr; let i = index">
+                          <div class="row">
+                            <div class="historybox">
+                              <h2>{{order.order_details[0].category_name}}</h2>
+                              <h4>{{order.order_no}}</h4>
+                              <!-- <h4>July 21, 2019</h4> -->
+                              <h4>{{order.date_created | date: 'MMMM d, y'}}</h4>
+                              <!-- <a  class="btn btn-info" role="button">Request Ongoing</a> -->
+                              <!-- <p>{{order.order_details[0].category_description}}</p> -->
+                              <!-- <div [innerHTML]="order.order_details[0].category_description"></div> -->
+                            </div>
+                            <!-- <div class="viewbooking" (click)="gotoDetails(order)"><a class="btn btn-info" role="button">VIEW BOOKING</a></div> -->
+                            <div class="viewbooking">
+                              <button class="btn btn-info" (click)="gotoDetails(order)" type="button">
+                                VIEW BOOKING
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="no-record" *ngIf="orderarr.length == 0">
+                          <img src="assets/img/no-record.png">
+                          <h3>No Bookings Found!!!!</h3>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                      Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim
+                      occaecat
+                      veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim.
+                      Velit
+                      non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non
+                      minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum
+                      in
+                      qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis
+                      reprehenderit occaecat anim ullamco ad duis occaecat ex.
+                    </div>
+                  </div>
+                </mat-tab>
+
+              </mat-tab-group>
+
+
+
+              <!-- <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                    aria-controls="nav-home" aria-selected="true">ONGOING</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                    aria-controls="nav-profile" aria-selected="false">HISTORY</a>
+                </div>
+              </nav>
+              <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <div class="row">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                      <div class="row">
+                        <div class="historybox">
+                          <h2>AC Service and Repair</h2>
+                          <h4>July 21, 2019</h4>
+                          <a  class="btn btn-info" role="button">Request Ongoing</a>
+                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s,</p>
+                        </div>
+                        <div class="viewbooking"><a  class="btn btn-info" role="button">VIEW BOOKING</a></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                      <div class="row">
+                        <div class="historybox">
+                          <h2>Saloon at Home</h2>
+                          <h4>July 29, 2019</h4>
+                          <a  class="btn btn-info" role="button">Request Ongoing</a>
+                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s,</p>
+                        </div>
+                        <div class="viewbooking"><a  class="btn btn-info" role="button">VIEW BOOKING</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                  Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat
+                  veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit
+                  non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non
+                  minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in
+                  qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis
+                  reprehenderit occaecat anim ullamco ad duis occaecat ex.
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <!----------------------------------------------------->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>

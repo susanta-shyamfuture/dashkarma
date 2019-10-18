@@ -1,0 +1,46 @@
+<section class="innerbanner">
+        <img src="assets/img/contact.jpg" alt="">
+     </section>
+     <div class="editporfilebg">
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-3">
+                 <app-sidebar></app-sidebar>
+              </div>
+              <div class="col-lg-9">
+                 <h2>Review List</h2>
+                 <div class="editporfilebgInner">
+                     <div class="review" style="width:80%" *ngFor="let review of reviewList; let i = index">
+                           <div class="reviewleft">
+                             <!-- <img class="d-block w-100 rounded-circle" [src]="imageBaseUrl+review.customer_profile_image"
+                               alt="First slide"> -->
+                               <img class="d-block w-100 rounded-circle" src="assets/img/no-img.png"
+                               alt="First slide">
+                           </div>
+                           <div class="reviewright" >
+                             <h4>{{review.customer_name}}</h4>
+                             <div class="rating">
+                               <div class="stars">
+                                 <span class="fa fa-star checked" *ngIf="review.rating > 0"></span>
+                                 <span class="fa fa-star checked" *ngIf="review.rating > 1"></span>
+                                 <span class="fa fa-star checked" *ngIf="review.rating > 2"></span>
+                                 <span class="fa fa-star checked" *ngIf="review.rating > 3"></span>
+                                 <span class="fa fa-star checked" *ngIf="review.rating > 4"></span>
+                               </div>
+                               <!-- <span class="review-no">41 reviews</span> -->
+                             </div>
+                             <p>{{review.review}}</p>
+                           </div>
+                         </div>
+
+                         <div class="no-record" *ngIf="reviewList.length == 0">
+                              <img src="assets/img/no-record.png">
+                              <h3>No Services Found!!!!</h3>
+                            </div>
+                 </div>
+     
+     
+              </div>
+           </div>
+        </div>
+     </div>

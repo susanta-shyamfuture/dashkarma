@@ -1,0 +1,14 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "variables";
+@import "~bootstrap/scss/bootstrap.scss";
+//@import "~font-awesome/scss/font-awesome.scss";
+//@import "~font-awesome/css/font-awesome.css";
+
+@import '~ngx-toastr/toastr-bs4-alert';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "utils";
+// @import "~owl.carousel/dist/assets/owl.carousel.css";
+// @import "~owl.carousel/dist/assets/owl.theme.default.css";

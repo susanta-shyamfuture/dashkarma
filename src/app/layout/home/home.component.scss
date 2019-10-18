@@ -1,0 +1,65 @@
+.services-wrap img {
+    width: 75px;
+    height: 60px;
+}
+
+.search-result {
+    position: absolute;
+    z-index: 9999;
+    background: #fff;
+    width: 93%;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.search-result li {
+    list-style: none;
+}
+
+.offerbox {
+    cursor: pointer;
+}
+
+.weoffer-bg .card-content {
+    // min-height: 465px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.offerbox {
+    height: 215px;
+    // margin-bottom: 30px;
+}
+
+.tittleBox {
+    width: 100%;
+    background: #0000009e;
+    padding: 4px 0px;
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 14px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.services-wrap img {
+    width: 100%;
+    height: auto;
+}
+
+ul,
+dl {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    margin-left: 0px !important;
+    padding: 10px 0px 0px 12px;
+}
+
+.customer-logos.slider {
+    margin-top: 30px;
+}

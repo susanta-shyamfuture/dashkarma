@@ -1,0 +1,61 @@
+  <!-- Modal Login -->
+  <!-- <div class="modal fade login-modal" id="myModal" role="dialog">
+    <div class="modal-dialog"> -->
+
+  <!-- Modal content-->
+  <div class="login-modal">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sign in</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="closeSignIn()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form role="form" [formGroup]="signInForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-group">
+              <label for="contact">User Type:</label>
+              <mat-radio-group aria-label="Select an option" formControlName="user_type">
+                <mat-radio-button value="2">Customer</mat-radio-button>
+                <mat-radio-button value="3">Technician</mat-radio-button>
+                <div class="clearfix"></div>
+              </mat-radio-group>
+            </div>
+            <div class="form-group">
+              <label for="contact">Mobile Number:</label>
+              <input type="text" class="form-control" id="contact" name="contact" formControlName="contact"
+                [ngClass]="{ 'is-invalid': submitted && f.contact.errors }">
+              <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                <div *ngIf="f.contact.errors.required">Mobile is required</div>
+                <div *ngIf="!f.contact.errors.pattern && f.contact.errors.minlength">Mobile Number must be at least 10 numeric characters</div>
+                <div *ngIf="!f.contact.errors.pattern && f.contact.errors.maxlength">Mobile Number can not be more than 10 numeric characters</div>
+                <!-- <div *ngIf="f.email.errors.email">Email must be a valid email address</div> -->
+                <div *ngIf="f.contact.errors.pattern">Only numeric characters are allowed</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" id="pwd" name="pswd" formControlName="password"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+            </div>
+            <div class="form-group form-check">
+              <p><a (click)="openForgotModal()">Forgot Password?</a></p>
+
+            </div>
+            <button type="submit" class="btn waves-effect waves-light">Sign in</button>
+          </form>
+          <button type="submit" class="btn waves-effect waves-light" (click)="openModalSignUp()">Sign Up</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- </div>
+  </div> -->
+  <ngx-spinner bdOpacity=1 bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>

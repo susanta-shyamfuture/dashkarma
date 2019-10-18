@@ -1,0 +1,116 @@
+<section class="innerbanner">
+    <img src="assets/img/inner-banner.jpg" alt=""> 
+ </section>
+ <section class="innerbody">
+    <div class="container">
+       <div class="row">
+          <!---------------------------------------------------------blog--------------------------------------------------------------------------------------->
+          <section class="blog-area ptb-120 w-100">
+             <div class="container">
+                <div class="row">
+                   <div class="col-lg-4 col-md-6 mb-4" *ngFor="let blog of blogList; let i = index">
+                      <div class="single-blog-post">
+                         <div class="post-image">
+                            <a [routerLink]="['/blog/details', blog.id]">
+                              <img [src]="imageBaseUrl+blog.image_large" alt="image">
+                             
+                              <!-- <img src="assets/img/yoga-2.jpg" alt="image"> -->
+                           </a>
+                            <div class="date">{{blog.date_created | date: 'MMMM d, y'}}</div>
+                         </div>
+                         <div class="post-content">
+                            <!-- <span>By: <a href="javascript:void(0)">Anderson</a></span> -->
+                            <h3><a [routerLink]="['/blog/details', blog.id]">{{blog.title}}</a></h3>
+                            <div [innerHtml]="blog.description | slice:0:150" class="p-3"></div>
+                         </div>
+                         <a [routerLink]="['/blog/details', blog.id]" class="blog-learnmore-btn btn btn-theme-red btn-block">Learn More <i class="flaticon-arrow-pointing-to-right"></i></a>
+                        </div>
+                   </div>
+                   <!-- <div class="col-lg-4 col-md-6">
+                      <div class="single-blog-post">
+                         <div class="post-image">
+                            <a [routerLink]="'/blog/details/1'"><img src="assets/img/yoga-2.jpg" alt="image"></a>
+                            <div class="date">12 Sep, 2019</div>
+                         </div>
+                         <div class="post-content">
+                            <span>By: <a href="javascript:void(0)">John Smith</a></span>
+                            <h3><a href="javascript:void(0)">Open letter to the residents of Ellsworth, Maine</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                            <a [routerLink]="'/blog/details/1'" class="learn-more-btn">Learn More <i class="flaticon-arrow-pointing-to-right"></i></a>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="col-lg-4 col-md-6">
+                      <div class="single-blog-post">
+                         <div class="post-image">
+                            <a [routerLink]="'/blog/details/1'"><img src="assets/img/yoga-3.jpg" alt="image"></a>
+                            <div class="date">14 Sep, 2019</div>
+                         </div>
+                         <div class="post-content">
+                            <span>By: <a href="javascript:void(0)">Joe Root</a></span>
+                            <h3><a href="javascript:void(0)">What is a normal phenotype for aging mice?</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                            <a [routerLink]="'/blog/details/1'" class="learn-more-btn">Learn More <i class="flaticon-arrow-pointing-to-right"></i></a>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="col-lg-4 col-md-6">
+                      <div class="single-blog-post">
+                         <div class="post-image">
+                            <a [routerLink]="'/blog/details/1'"><img src="assets/img/yoga-1.jpeg" alt="image"></a>
+                            <div class="date">21 Jan, 2019</div>
+                         </div>
+                         <div class="post-content">
+                            <span>By: <a href="javascript:void(0)">Anderson</a></span>
+                            <h3><a href="javascript:void(0)">Remember, Only YOU can Prevent Genetic Drift</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                            <a [routerLink]="'/blog/details/1'" class="learn-more-btn">Learn More <i class="flaticon-arrow-pointing-to-right"></i></a>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="col-lg-4 col-md-6">
+                      <div class="single-blog-post">
+                         <div class="post-image">
+                            <a [routerLink]="'/blog/details/1'"><img src="assets/img/yoga-2.jpg" alt="image"></a>
+                            <div class="date">12 Sep, 2019</div>
+                         </div>
+                         <div class="post-content">
+                            <span>By: <a href="javascript:void(0)">John Smith</a></span>
+                            <h3><a href="javascript:void(0)">Open letter to the residents of Ellsworth, Maine</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                            <a [routerLink]="'/blog/details/1'" class="learn-more-btn">Learn More <i class="flaticon-arrow-pointing-to-right"></i></a>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="col-lg-4 col-md-6">
+                      <div class="single-blog-post">
+                         <div class="post-image">
+                            <a [routerLink]="'/blog/details/1'"><img src="assets/img/yoga-3.jpg" alt="image"></a>
+                            <div class="date">14 Sep, 2019</div>
+                         </div>
+                         <div class="post-content">
+                            <span>By: <a href="javascript:void(0)">Joe Root</a></span>
+                            <h3><a href="javascript:void(0)">What is a normal phenotype for aging mice?</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                            <a [routerLink]="'/blog/details/1'" class="learn-more-btn">Learn More <i class="flaticon-arrow-pointing-to-right"></i></a>
+                         </div>
+                      </div>
+                   </div> -->
+                   <!-- <div class="col-lg-12 col-md-12">
+                      <div class="pagination-area">
+                         <a href="javascript:void(0)" class="prev page-numbers"><i class="fas fa-angle-double-left"></i></a>
+                         <a href="javascript:void(0)" class="page-numbers">1</a>
+                         <span class="page-numbers current" aria-current="page">2</span>
+                         <a href="javascript:void(0)" class="page-numbers">3</a>
+                         <a href="javascript:void(0)" class="page-numbers">4</a>
+                         <a href="javascript:void(0)" class="next page-numbers"><i class="fas fa-angle-double-right"></i></a>
+                      </div>
+                   </div> -->
+                </div>
+             </div>
+          </section>
+          <!---------------------------------------------------------blog--------------------------------------------------------------------------------------->
+       </div>
+    </div>
+ </section>
+ <div class="clearfix"></div>

@@ -1,0 +1,152 @@
+<div class="modal-content modal">
+  <div class="modal-header">
+
+    <h5 class="modal-title" id="exampleModalLabel3">
+      <i class="fa fa-arrow-left" aria-hidden="true" (click)="backModal()"></i>
+      <span> {{parentCatDetails.name}}</span>
+      <!-- <span> List of Priest</span> -->
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-body2" *ngIf="isVisible">
+    <!-- <h3>This is package List</h3> -->
+    <div class="row packagesRow" *ngFor="let package of packageList; let i = index">
+      <div class="col-lg-3 tabrowLeft">
+        <!-- <img src="assets/img/pandit-ji4.jpg" alt=""> -->
+        <img [src]="imageBaseUrl+package.image_large" alt="First slide">
+      </div>
+      <div class="col-lg-9 tabrowRight">
+        <h2>{{package.name}}</h2>
+        <!-- <p [innerHtml]="package.description"></p> -->
+
+        <mat-expansion-panel *ngIf="package.description">
+          <mat-expansion-panel-header>
+            View Description
+          </mat-expansion-panel-header>
+        
+          <div [innerHtml]="package.description"></div>
+        </mat-expansion-panel>
+        <!-- <ul>
+          <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Lorem Ipsum is
+            simply dummy text of the printing and typesetting industry.
+          </li>
+          <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>the printing and
+            typesetting industry.
+          </li>
+          <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Lorem Ipsum is
+            simply dummy text of the printing
+          </li>
+        </ul> -->
+        <div class="row">
+          <h3 *ngIf="package.type==1"> {{package.service_charge}}</h3>
+          <h3 *ngIf="package.type==2">On Inspection</h3>
+          <button class="btn-card btn btn-theme-red" [owlDateTimeTrigger]="dt1">
+            <i class="fa fa-calendar"></i>
+          </button>
+          <input [owlDateTime]="dt1" [(ngModel)]="selectedMoment" placeholder="Date Time" class="hidden-element">
+          <owl-date-time #dt1></owl-date-time>
+          <button *ngIf="!package.isCart" type="button" class="btn-card btn btn-primary" data-toggle="modal"
+            data-target="#myModal2" (click)="addtoCart(package, dt1)">
+            Book Now
+          </button>
+
+          <button *ngIf="package.isCart" type="button" class="btn-card btn btn-primary" data-toggle="modal"
+            data-target="#myModal2" (click)="removetoCart(package)">
+            Remove
+          </button>
+
+          <div class="cart-quantity" *ngIf="package.isCart && package.is_multiple ==1">
+            <button class="quantity-btn" type="button" name="button" (click)="decrement(package,i)">
+              <i class="fa fa-minus" aria-hidden="true"></i>
+            </button>
+            <span style="width: 20px; text-align: center; display:inline-block;">
+              {{package.quantity}}</span>
+            <button class="quantity-btn" type="button" name="button" (click)="increment(package,i)">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </div>
+          <!-- <div class="modal" id="myModal2">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Book your Appointment</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Your Location</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>Kolkata</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Select Date</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Select Date">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Select Time</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Select Time">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Payment methord</label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                        value="option1" checked>
+                      <label class="form-check-label" for="exampleRadios1">
+                        Cash on Delivery
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                        value="option2">
+                      <label class="form-check-label" for="exampleRadios2">
+                        Debit Card
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- <h5><a href="javascript:void(0)">Request Inspection at Home</a></h5> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="no-record" *ngIf="packageList.length==0">
+      <img src="assets/img/no-record.png">
+      <h3>No Services Found!!!!</h3>
+    </div>
+  </div>
+
+  <div class="modal-footer" *ngIf="customer_cart_data.length >0 && packageList.length >0">
+    <!-- <div class="col-lg-8">Sub Total  <i class="fa fa-inr" aria-hidden="true"></i> {{subTotal}}</div>
+      <div class="col-lg-2"> 
+          <button (click)="gotoCart()">View Cart</button>
+        </div>
+      <div class="col-lg-2"> 
+        <button (click)="gotoCheckOut()">Proceed</button>
+      </div> -->
+    <div class="col-lg-8">
+      Total Cart Value : <i class="fa fa-inr" aria-hidden="true"></i> {{subTotal}}
+    </div>
+    <div class="col-lg-4">
+      <div class="col-lg-2">
+          <div class="cart" (click)="gotoCart()">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <span>{{cartCount}}</span>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- </div>
+              </div> -->

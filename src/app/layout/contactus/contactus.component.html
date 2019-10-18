@@ -1,0 +1,87 @@
+<section class="innerbanner">
+  <img src="assets/img/contact.jpg" alt="">
+</section>
+<section class="innerbody">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="contactleft">
+          <h2>Contact <span>Info</span></h2>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book.
+          </p>
+          <ul *ngIf="settingList">
+            <li>
+              <div class="wndfal-icon-contact"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+              <div class="contact-inner-info">
+                <span class="list-title">Address:</span>{{settingList.address}}
+              </div>
+            </li>
+            <li>
+              <div class="wndfal-icon-contact"><i class="fa fa-phone-square" aria-hidden="true"></i></div>
+              <div class="contact-inner-info"><span class="list-title">Call: </span><a href="javascript:void(0)" rel="nofollow">{{settingList.phone_no}}</a></div>
+            </li>
+            <li>
+              <div class="wndfal-icon-contact"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+              <div class="contact-inner-info"><span class="list-title">Email: </span><a href="javascript:void(0)"
+                  rel="nofollow"> {{settingList.email}}</a></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="contactright">
+          <form role="form" [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="row form-group">
+              <div class="col-lg-6"><label for="exampleInputEmail1">Name </label>
+
+                <input type="text" class="form-control" id="name" name="name" formControlName="name"
+                  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">Name is required</div>
+                </div>
+              </div>
+              <div class="col-lg-6"><label for="exampleInputEmail1">Email</label>
+                <input type="text" class="form-control" id="email" name="email" formControlName="email"
+                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-6"><label for="exampleInputEmail1">Phone Number </label>
+
+                <input type="text" class="form-control" id="phone" name="phone" formControlName="phone"
+                  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                  <div *ngIf="f.phone.errors.required">Phone number is required</div>
+                </div>
+              </div>
+              <div class="col-lg-6"><label for="exampleInputEmail1">Subject</label>
+                <input type="textarea" class="form-control" id="subject" name="subject" formControlName="subject"
+                  [ngClass]="{ 'is-invalid': submitted && f.subject.errors }">
+                <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                  <div *ngIf="f.subject.errors.required">Subject is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-12">
+                <label for="exampleFormControlTextarea1">Message</label>
+                <textarea class="form-control" id="message" name="message" formControlName="message"
+                  [ngClass]="{ 'is-invalid': submitted && f.message.errors }" rows="3"></textarea>
+                <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                  <div *ngIf="f.message.errors.required">Message is required</div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

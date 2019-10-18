@@ -1,0 +1,53 @@
+<section class="innerbanner">
+  <img src="assets/img/contact.jpg" alt="">
+</section>
+<div class="editporfilebg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <app-sidebar></app-sidebar>
+
+      </div>
+      <div class="col-lg-9">
+        <h2>My Profile</h2>
+        <div class="editporfilebgInner">
+          <form role="form" [formGroup]="profileEditForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-group">
+              <label for="exampleInput">Your Name</label>
+              <input type="input" class="form-control" id="exampleInput" aria-describedby="" placeholder="Your Name"
+                name="name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">Name is required</div>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Your Email ID</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"
+                formControlName="email" placeholder="Your Email ID" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                  </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Contact Number</label>
+              <input type="input" class="form-control" id="exampleInput" placeholder="Contact Number" name="contact"
+                formControlName="contact" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }">
+                <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                    <div *ngIf="f.contact.errors.required">Mobile Number is required</div>
+                    <div *ngIf="f.contact.errors.minlength">Mobile Number must be at least 10 characters</div>
+
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="aboutMe">About Me</label>
+                <textarea placeholder="About Me" id="aboutMe" cols="30" rows="4" class="form-control" name="about_me" formControlName="about_me"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary save">SAVE</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

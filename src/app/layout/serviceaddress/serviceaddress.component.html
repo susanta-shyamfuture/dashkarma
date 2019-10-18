@@ -1,0 +1,50 @@
+<section class="innerbanner">
+   <img src="assets/img/contact.jpg" alt="">
+</section>
+<div class="editporfilebg">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-3">
+            <app-sidebar></app-sidebar>
+         </div>
+         <div class="col-lg-9">
+            <h2>My Service Address</h2>
+            <div class="editporfilebgInner">
+               <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                     <div class="col-sm-6 col-xs-12">
+                        <select class="form-control search-slt" id="exampleFormControlSelect1" name="citylist"
+                           formControlName="citylist">
+                           <option *ngFor="let city of citylist; let i = index" [value]="citylist[i].id"
+                             >
+                              {{citylist[i].name}}
+                           </option>
+                        </select>
+                     </div>
+
+                     <div class="col-sm-3 col-xs-12">
+                        <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i>
+                           Submit</button>
+                     </div>
+                  </div>
+               </form>
+
+               <div class="row packagesRow" *ngFor="let address of addressList; let i = index">
+                  <div class="col-lg-9">
+                     <h5> {{address.name}}</h5>
+
+                  </div>
+                  <div class="col-lg-3">
+                     <div class="edit-icon" (click)="deleteAddress(address)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+</div>

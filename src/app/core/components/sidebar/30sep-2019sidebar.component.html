@@ -1,0 +1,85 @@
+<!----------------------------------------------------------->
+<!-- <div class="editporfilebg">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-12"> -->
+             <!-- <h2>My Dashboard</h2> -->
+             <h2></h2>
+             <!------------------------------------------------------>
+             <div class="verticaltabs">
+                <div class="tab">
+                   <button class="tablinks">
+
+                     <div class="picbox">
+                        <label for="file-input">
+                          <!-- <img src="assets/img/man.jpg"/> -->
+                          <img [src]="imageBaseUrl+userDetails.profile_image">
+                        </label>
+                        
+                        <input id="file-input" type="file" (change)="fileProgress($event)"/>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" class="edit-icon-img"></i>
+                      </div>
+
+
+                      <!-- <div class="picbox">
+                         <img src="assets/img/man.jpg">
+
+                         <input type="file" name="image" (change)="fileProgress($event)" />
+                      </div> -->
+                      <!-- <input type="file" name="image" (change)="fileProgress($event)" /> -->
+                      <h3>{{userDetails.name}}</h3>
+                      <p>{{userDetails.email}}</p>
+                      <p>{{userDetails.contact}}</p>
+                   </button>
+                   <div *ngIf="userType==2">
+                     <!-- <button class="tablinks" onclick="openCity(event, 'BookaService')">Book a Service</button> -->
+                     <!-- <button class="tablinks" (click)="gotoPage('wallet')">My Wallet</button> -->
+                     <button class="tablinks" (click)="gotoPage('mybooking')">My Booking</button>
+                     <button class="tablinks" (click)="openListAddress()">My Address</button>
+                     <!-- <button class="tablinks" >Payment Module</button> -->
+                     <button class="tablinks" >Payment History</button>
+                     <button class="tablinks" >Write a Review</button>
+                   </div>
+                   <div *ngIf="userType==3">
+                     <button class="tablinks" (click)="gotoPage('wallet')">My Wallet</button>
+                     <button class="tablinks" (click)="gotoPage('myappointment')">My Appointment</button>
+                     <!-- <button class="tablinks" (click)="gotoPage('mybooking')">Booking List</button> -->
+                     <button class="tablinks" (click)="gotoPage('serviceaddress')">Set Location</button>
+                     <!-- <button class="tablinks" >Get the right request</button> -->
+                     <!-- <button class="tablinks">Payment History</button> -->
+                     
+                     <button class="tablinks" >Fees collected</button>
+                     <button class="tablinks">View Reviews</button>
+                   </div>
+                   </div>
+                <!-- <div id="myprofile" class="tabcontent">
+                   <h3></h3>
+                   <p>My Profile</p>
+                </div>
+                <div id="BookaService" class="tabcontent">
+                   <h3></h3>
+                   <p>Book a Service.</p>
+                </div>
+                <div id="MyBooking" class="tabcontent">
+                   <h3></h3>
+                   <p>My Booking</p>
+                </div>
+                <div id="PaymentModule" class="tabcontent">
+                   <h3></h3>
+                   <p>Payment Module</p>
+                </div>
+                <div id="PaymentHistory" class="tabcontent">
+                   <h3></h3>
+                   <p>Payment History</p>
+                </div>
+                <div id="WriteaReview" class="tabcontent">
+                   <h3></h3>
+                   <p>Write a Review</p>
+                </div> -->
+             </div>
+             <!----------------------------------------------------->
+          <!-- </div>
+       </div>
+    </div>
+ </div>
+ <div class="clearfix"></div> -->

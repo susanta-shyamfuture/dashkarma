@@ -1,0 +1,17 @@
+<p>test works!</p>
+kkk{{paymentdetails_data.MID}}
+<form class="form" method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="payment"
+    ngNoForm>
+    <div>
+        <input type="text" value="{{paymentdetails_data.MID}}" name="MID">
+        <input type="text" value="{{paymentdetails_data.ORDER_ID}}" name="ORDER_ID">
+        <input type="text" value="{{paymentdetails_data.TXN_AMOUNT}}" name="TXN_AMOUNT">
+        <input type="text" value="{{paymentdetails_data.CUST_ID}}" name="CUST_ID">
+        <input type="text" value="{{paymentdetails_data.INDUSTRY_TYPE_ID}}" name="INDUSTRY_TYPE_ID">
+        <input type="text" value="{{paymentdetails_data.WEBSITE}}" name="WEBSITE">
+        <input type="text" value="{{paymentdetails_data.CHANNEL_ID}}" name="CHANNEL_ID">
+        <input type="text" value="{{paymentdetails_data.CALLBACK_URL}}" name="CALLBACK_URL">
+        <input type="text" value="{{paymentdetails_data.CHECKSUMHASH}}" name="CHECKSUMHASH">
+    </div>
+    <input type="submit" name="submit" value="Confirm Payment" id="payment_btn">
+</form>

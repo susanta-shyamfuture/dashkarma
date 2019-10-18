@@ -1,0 +1,96 @@
+<div class="detailsbox">
+  <div class="container">
+
+    <div class="row" *ngIf="isVisible">
+      <div class="col-sm-12 col-xs-12">
+        <div class="detail-top">
+          <div class="row">
+            <div class="col-sm-3 col-xs-12" (click)="goBack()">
+              <h3><a href="javascript:void(0)"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> All
+                  Bookings</a></h3>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+              <h2>
+
+                {{cat_name}} <br>
+                <span>Request Date: {{orderDetails.date_created | date: 'MMMM d, y'}}</span></h2>
+
+            </div>
+            <div class="col-sm-3 col-xs-12">
+
+              <button class="btn btn-primary submit pull-right" type="submit" (click)="cancelOrder(orderDetails)">Cancel
+                Request</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-9 col-xs-12">
+        <div class="detail-left">
+          <h2>Professional Assigned<br>
+            <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span>
+          </h2>
+          <div class="clearfix"></div>
+
+          <div class="col-sm-12 col-xs-12" *ngFor="let order of orderList; let i = index">
+            <div class="row">
+              <div class="col-sm-7 col-xs-12">
+                <div class="userbox2">
+                  <div class="userimg">
+                    <img [src]="imageBaseUrl+order.service_image_large" alt="Priest">
+
+                  </div>
+                  <h4>{{order.service_name}}</h4>
+                  <p>Qty : {{order.quantity}}</p>
+                  <p>Price : {{order.unit_price}}</p>
+                </div>
+              </div>
+              <div class="col-sm-5 col-xs-12">
+                <div class="userbox2" *ngIf="order.technician_id">
+                  <div class="userimg">
+                    <img [src]="imageBaseUrl+order.technician_profile_image" alt="Priest">
+
+                  </div>
+                  <h4>{{order.technician_name}}<br>
+
+                    <i class="fa fa-phone" aria-hidden="true"></i> {{order.technician_contact}} <br>
+
+                  </h4>
+
+                </div>
+              </div>
+
+              <div class="userbox">
+                <h4 *ngIf="order.assign_datetime !='0000-00-00 00:00:00'"><span>Arrival time of professional </span><br>
+                  {{order.assign_datetime | date: 'MMMM d, y'}}</h4>
+                <button class="btn btn-primary submit pull-right" type="submit" *ngIf="order.admin_status < 1"
+                  (click)="gotoReschedule(orderDetails.id,order)">Reschedule</button>
+                <button class="btn btn-primary submit pull-right" type="submit"
+                  (click)="gotoRating(orderDetails.id,order)">Rating</button>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-sm-3 col-xs-12">
+        <div class="detail-right">
+
+          <h2>Payment Summary</h2>
+          <h3>Order Id <span>#{{orderDetails.order_no}}</span> </h3>
+          <h3>Booking Amount <span> Rs.{{orderDetails.total_price}} </span></h3>
+          <h3>Sub Total <span> Rs.{{orderDetails.total_price}} </span></h3>
+          <div class="line"></div>
+          <h4>Amount to be paid <span>Rs.{{orderDetails.total_price}}</span></h4>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

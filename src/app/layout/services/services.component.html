@@ -1,0 +1,199 @@
+<section class="innerbanner" *ngIf="parentCatDetails.banner_image_large">
+  <!-- <img src="assets/img/prist-banner.jpg" alt=""> -->
+  <img [src]="imageBaseUrl+parentCatDetails.banner_image_large">
+</section>
+<section class="servicesSection">
+  <div class="container">
+    <div class="row">
+      <div class="servicesSectionInner">
+        <div class="col-sm-8 col-xs-12 servicesSectionInnerLeft">
+          <mat-tab-group mat-align-tabs="start" class="service-tab">
+            <mat-tab label="Nearest User">
+              <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent1">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <div class="row">
+
+                    <div *ngFor="let nUser of nearestUser; let i = index" class="col-sm-4 col-xs-12"
+                      id="nav-tabContent1">
+                      <div class="userbox" [title]="nUser.name">
+                        <div class="userimg">
+                          <img *ngIf="nUser.profile_image!=''" alt="First slide"
+                            [src]="imageBaseUrl+nUser.profile_image">
+                          <img *ngIf="nUser.profile_image==''" alt="First slide" src="assets/img/no-img.png">
+                        </div>
+                        <h4 text-wrap>{{nUser.name}}</h4>
+                        <p>******{{nUser.contact | slice:1:4}}</p>
+                      </div>
+                    </div>
+                    <!-- <div *ngIf="nearestUser.length ==0">
+                      <h4>No Records Found</h4>
+                    </div>
+                  -->
+
+                    <div class="no-record" *ngIf="nearestUser.length == 0">
+                      <img src="assets/img/no-record.png">
+                      <h3>No Users Found!!!!</h3>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="How it Works">
+              <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent2">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <p> Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim
+                    occaecat
+                    veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim.
+                    Velit
+                    non irure adipisicing aliqua ullamco irure incididunt.
+                  </p>
+                  <ul>
+                    <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Lorem Ipsum is simply
+                      dummy
+                      text of the printing and typesetting industry.
+                    </li>
+                    <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>the printing and
+                      typesetting
+                      industry.
+                    </li>
+                    <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Lorem Ipsum is simply
+                      dummy
+                      text of the printing
+                    </li>
+                    <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Lorem Ipsum is simply
+                      dummy
+                      text of the printing and typesetting industry.
+                    </li>
+                    <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Lorem Ipsum is simply
+                      dummy
+                      text of the printing
+                    </li>
+                    <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>the printing and
+                      typesetting
+                      industry.
+                    </li>
+                    <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Lorem Ipsum is simply
+                      dummy
+                      text of the printing
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="Customer Reviews">
+              <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent3">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <div class="review" *ngFor="let review of reviewList; let i = index">
+                    <div class="reviewleft">
+                      <img *ngIf="review.customer_profile_image!=''" class="d-block w-100 rounded-circle"
+                        [src]="imageBaseUrl+review.customer_profile_image" alt="">
+                      <img *ngIf="review.customer_profile_image==''" class="d-block w-100 rounded-circle" alt=""
+                        src="assets/img/no-img.png">
+                    </div>
+                    <div class="reviewright">
+                      <h4>{{review.customer_name}}</h4>
+                      <div class="rating">
+                        <div class="stars">
+                          <span class="fa fa-star checked" *ngIf="review.rating > 0"></span>
+                          <span class="fa fa-star checked" *ngIf="review.rating > 1"></span>
+                          <span class="fa fa-star checked" *ngIf="review.rating > 2"></span>
+                          <span class="fa fa-star checked" *ngIf="review.rating > 3"></span>
+                          <span class="fa fa-star checked" *ngIf="review.rating > 4"></span>
+                        </div>
+                        <!-- <span class="review-no">41 reviews</span> -->
+                      </div>
+                      <p>{{review.review}}</p>
+                    </div>
+                  </div>
+
+                  <div class="no-record" *ngIf="reviewList.length == 0">
+                    <img src="assets/img/no-record.png">
+                    <h3>No Reviews Found!!!!</h3>
+                  </div>
+
+
+                  <!-- <div class="review">
+                    <div class="reviewleft">
+                      <img class="d-block w-100 rounded-circle" src="http://nicesnippets.com/demo/profile-7.jpg"
+                        alt="First slide">
+                    </div>
+                    <div class="reviewright">
+                      <h4>Lipsum labore excepteur</h4>
+                      <div class="rating">
+                        <div class="stars">
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                        </div>
+                        <span class="review-no">41 reviews</span>
+                      </div>
+                      <p>Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim
+                        occaecat veniam.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="review">
+                    <div class="reviewleft">
+                      <img class="d-block w-100 rounded-circle" src="http://nicesnippets.com/demo/profile-7.jpg"
+                        alt="First slide">
+                    </div>
+                    <div class="reviewright">
+                      <h4>Lipsum labore excepteur</h4>
+                      <div class="rating">
+                        <div class="stars">
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                        </div>
+                        <span class="review-no">41 reviews</span>
+                      </div>
+                      <p>Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim
+                        occaecat veniam.
+                      </p>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </mat-tab>
+
+          </mat-tab-group>
+
+        </div>
+        <div class="col-sm-4 col-xs-12 servicesSectionInnerRight">
+          <div class="servicesSectionInnerRightInner">
+            <h2>Need a {{parentCatDetails.name}} for :</h2>
+
+            <div class="priestOne">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3"
+                *ngFor="let serviceList of subServiceList; let i = index" (click)="openPackageModal(serviceList)">
+                {{serviceList.name}} <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+              </button>
+
+
+              <div class="servicesSectionInnerRightInner2">
+                <div class="servicesSectionInnerRightInner2Row">
+                  <h3>{{totalBooking.total_booking}}</h3>
+                  <p>Bookings done in last year</p>
+                </div>
+                <div class="servicesSectionInnerRightInner2Row">
+                  <h4>{{catRating.ava_rat | slice:0:3}} / {{catRating.outof}}</h4>
+                  <p>based on {{catRating.outof}} reviews</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="clearfix"></div>
+<ngx-spinner bdOpacity=1 bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

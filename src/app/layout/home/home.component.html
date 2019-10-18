@@ -1,0 +1,579 @@
+<div *ngIf="visibleKey">
+
+
+    <!--Carousel Wrapper-->
+    <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+        <!--Indicators-->
+        <!-- <ol class="carousel-indicators">
+    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+  </ol> -->
+        <!--/.Indicators-->
+        <!--Slides-->
+        <div class="carousel-inner home-banner" role="listbox">
+
+            <owl-carousel-o [options]="bannerOptions">
+                <ng-template carouselSlide *ngFor="let banner of bannerList; let i = index">
+                    <div class="carousel-item active">
+                        <div class="view">
+                            <img class="d-block w-100" [src]="imageBaseUrl+banner.image_large" alt="First slide">
+                            <div class="mask rgba-black-light"></div>
+                        </div>
+                    </div>
+                </ng-template>
+                <!-- <ng-template carouselSlide>
+              <div class="carousel-item active">
+                  <div class="view">
+                    <img class="d-block w-100" src="assets/img/slide-banner2.jpg" alt="First slide">
+                    <div class="mask rgba-black-light"></div>
+                  </div>
+                </div>
+          </ng-template>
+          <ng-template carouselSlide>
+              <div class="carousel-item active">
+                  <div class="view">
+                    <img class="d-block w-100" src="assets/img/slide-banner3.jpg" alt="First slide">
+                    <div class="mask rgba-black-light"></div>
+                  </div>
+                </div>
+          </ng-template> -->
+            </owl-carousel-o>
+
+
+        </div>
+        <!--/.Slides-->
+        <!--Controls-->
+        <!-- <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+    <span class="" aria-hidden="true"><img class="d-block w-100" src="assets/img/angle-left.png" alt=""></span>
+    <span class="sr-only">Previous</span>
+  </a> -->
+        <!-- <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+    <span class="" aria-hidden="true"><img class="d-block w-100" src="assets/img/angle-right.png" alt=""></span>
+    <span class="sr-only">Next</span>
+  </a> -->
+        <!--/.Controls-->
+        <div class="carousel-caption">
+            <h3 class="h3-responsive">Serving your beliefs since 2008</h3>
+            <!-- <p>Know what your customer needs</p> -->
+        </div>
+        <div class="search-sec">
+            <div class="container">
+                <!-- <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="row">
+          <div class="col-sm-3 col-xs-12">
+            <select class="form-control search-slt" id="exampleFormControlSelect1" name="citylist" formControlName="citylist">
+             
+              <option *ngFor="let city of citylist; let i = index" [value]="citylist[i].id" >
+                {{citylist[i].name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <input type="text" placeholder="Search for a service" class="form-control"
+              id="usr" name="searchtxt" formControlName="searchtxt" [ngClass]="{ 'is-invalid': submittedSearch && fs.searchtxt.errors }" (keyup)="searchClient(searchtxt)">
+              <div *ngIf="submittedSearch && fs.searchtxt.errors" class="invalid-feedback">
+                <div *ngIf="fs.searchtxt.errors.required">Search Keyword is required</div>
+              </div>
+              
+          </div>
+          <div class="col-sm-3 col-xs-12">
+            <button type="submit" class="btn"><i class="fa fa-search"
+                aria-hidden="true"></i> Search</button></div>
+
+        
+        </div>
+      </form> -->
+                <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                    <div class="row">
+                        <div class="col-sm-3 col-xs-12">
+                            <select class="form-control search-slt" id="exampleFormControlSelect1" name="citylist"
+                                formControlName="citylist">
+
+                                <option *ngFor="let city of citylist; let i = index" [value]="citylist[i].id"
+                                    (click)="getLocation(citylist[i].id)">
+                                    {{citylist[i].name}}
+                                </option>
+                            </select>
+
+
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <input type="text" placeholder="Search for a service" class="form-control" id="usr"
+                                name="searchtxt" formControlName="searchtxt"
+                                [ngClass]="{ 'is-invalid': submittedSearch && fs.searchtxt.errors }"
+                                (input)="onSearchChange($event.target.value)">
+                            <div *ngIf="submittedSearch && fs.searchtxt.errors" class="invalid-feedback">
+                                <div *ngIf="fs.searchtxt.errors.required">Search Keyword is required</div>
+                            </div>
+
+                            <div class="search-result" *ngIf="searchList.length>0">
+                                <ul>
+                                    <!-- <li *ngFor="let client of clients | async">  
+                        <a (click)="onselectClient(client)">{{client.ClientName}}</a>  
+                    </li> -->
+                                    <li *ngFor="let searchh of searchList; let i = index"
+                                        (click)="selectSearchService(searchh)">{{searchh.name}} </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-3 col-xs-12">
+                            <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i>
+                                Search</button></div>
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--/.Carousel Wrapper-->
+    <!--Services-->
+    <div class="container">
+        <div class="services-wrap">
+            <div class="row">
+                <div class="col-sm-4 col-12 p-3" *ngFor="let category of catList; let i = index"
+                    (click)="gotoServicePage(category.id)">
+                    <div class="offerbox">
+
+                        <img [src]="imageBaseUrl+category.image_large" alt="Priest">
+
+
+                        <div class="tittleBox">
+                            {{category.name}}
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- <div class="col-sm-4 col-xs-12">
+        <div class="offerbox">
+          <div class="image-icon"><img src="assets/img/yoga-icon.png" alt="Yoga"></div>
+          <h2>Yoga</h2>
+          <div class="overlay">
+            <div class="text">Yoga</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nibh libero, consequat eget lobortis
+              eu,
+            </p>
+            <a (click)="gotoServicePage()" class="btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="offerbox">
+          <div class="image-icon"><img src="assets/img/meditation-icon.png" alt="Meditation"></div>
+          <h2>Meditation</h2>
+          <div class="overlay">
+            <div class="text">Meditation</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nibh libero, consequat eget lobortis
+              eu,
+            </p>
+            <a (click)="gotoServicePage()" class="btn">Learn More</a>
+          </div>
+        </div>
+      </div> -->
+            </div>
+        </div>
+    </div>
+    <!--/ .services-->
+    <!--Why We Are-->
+    <div class="why-are-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-xs-12">
+                    <h3>Why Are We Most Trusted?</h3>
+                    <p>10Karma is committed to serving you in practising your spiritual beliefs. Thus, we serve with a difference, taking you closer to your spiritual goals.
+                    </p>
+                    <div class=" clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="availability">
+                                <div class="icon-img"><img src="assets/img/availability-icon.png" alt=""></div>
+                                <h3>No reminders required</h3>
+                                <p>Once booked, you are our top priority. You won’t need to call us repeatedly for your purpose
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="availability">
+                                <div class="icon-img"><img src="assets/img/price-icon.png" alt=""></div>
+                                <h3>Certified, recognized and verified</h3>
+                                <p>The purohits and pandits registered here are certified, are recognized for their quality services. We also take the time to verify their identity before they get to serve you. 
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="availability">
+                                <div class="icon-img"><img src="assets/img/process-icon.png" alt=""></div>
+                                <h3>24x7 available booking facilities</h3>
+                                <p>Utilized for measuring flow, temperature level and pressure in the electrical
+                                    manufacturing industry.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="availability">
+                                <div class="icon-img"><img src="assets/img/estimation-icon.png" title="" alt=""></div>
+                                <h3>Absolute contentment</h3>
+                                <p>It is a service with a difference because it serves your spiritual goals. So we make sure to suggest you purohits or pandits who takes care of the minor details; serves you for unmatched satisfaction and contentment. 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="request-call">
+                        <div class="request-title">Request a call back</div>
+                        <form role="form" [formGroup]="requestForm" (ngSubmit)="onSubmit()" novalidate>
+                            <div class="row request-form">
+
+                                <div class="col-sm-12 col-xs-12">
+                                    <input type="text" placeholder="Your Name" class="form-control" name="name"
+                                        formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.name.errors.required">Name is required</div>
+                                        <div *ngIf="f.name.errors.pattern">Only Alphabets are allowed.</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12">
+                                    <input type="text" placeholder="Email Address" class="form-control" name="email"
+                                        formControlName="email"
+                                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12">
+                                    <input type="text" placeholder="Mobile Number" class="form-control"
+                                        formControlName="phone" name="phone"
+                                        [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+                                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                        <div *ngIf="f.phone.errors.required">Mobile Number is required</div>
+                                        <div *ngIf="!f.phone.errors.pattern && f.phone.errors.minlength">Mobile Number must be at least 10 characters</div>
+                                        <div *ngIf="!f.phone.errors.pattern && f.phone.errors.maxlength">Mobile Number can not be more than 10 numeric characters</div>
+                                        <div *ngIf="f.phone.errors.pattern">Only numeric characters are allowed</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-xs-12">
+                                    <input type="text" placeholder="Subject" class="form-control" name="subject"
+                                        formControlName="subject"
+                                        [ngClass]="{ 'is-invalid': submitted && f.subject.errors }">
+                                    <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                                        <div *ngIf="f.subject.errors.required">Subject is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-xs-12">
+                                    <textarea class="form-control" rows="5" id="message" name="message"
+                                        formControlName="message"
+                                        [ngClass]="{ 'is-invalid': submitted && f.message.errors }"
+                                        placeholder="Message is  Required"></textarea>
+                                    <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                                        <div *ngIf="f.message.errors.required">message is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 col-xs-12">
+                                    <button type="submit" class="btn waves-effect waves-light">Submit
+                                        Now</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ .Why We Are-->
+    <!--What We Offer-->
+    <div class="weoffer-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <h3>Know It All </h3>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo,</p> -->
+                </div>
+                <div class=" clearfix"></div>
+                <div class="col-sm-4 col-xs-12 py-3" *ngFor="let blog of blogList; let i = index">
+                    <div class="card-content">
+                        <div class="card-img">
+                            <!-- <img src="assets/img/news1.jpg" alt=""> -->
+                            <a [routerLink]="['/blog/details', blog.id]" class="d-block h-100">
+                                <img [src]="imageBaseUrl+blog.image_large" alt="image">
+                                <span>
+                                    <h4>{{blog.date_created | date: 'MMMM d, y'}} </h4>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="card-desc d-inline-block home-blog-desc">
+                            <h3>
+                                <a [routerLink]="['/blog/details', blog.id]" class="home-blog-title">
+                                    {{blog.title}}
+                                </a>
+                            </h3>
+                            <!-- <p >{{blog.description}}
+                            </p> -->
+                            <div [innerHtml]="blog.description | slice:0:150"></div>
+                        </div>
+                        <!-- <a [routerLink]="['/blog/details', blog.id]" class="btn-card">Read More</a> -->
+                        <a [routerLink]="['/blog/details', blog.id]" class="blog-learnmore-btn btn btn-theme-red btn-block m-0">Read More</a>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-4 col-xs-12">
+                    <div class="card-content">
+                        <div class="card-img">
+                            <img src="assets/img/news3.jpg" alt="">
+                            <span>
+                                <h4>02 August 2019 </h4>
+                            </span>
+                        </div>
+                        <div class="card-desc">
+                            <h3>Lorem ipsum dolor</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor
+                                quo, perspiciatis voluptas totam
+                            </p>
+                            <a href="javascript:void(0)" class="btn-card">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="card-content">
+                        <div class="card-img">
+                            <img src="assets/img/news2.jpg" alt="">
+                            <span>
+                                <h4>02 August 2019 </h4>
+                            </span>
+                        </div>
+                        <div class="card-desc">
+                            <h3>Lorem ipsum dolor</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor
+                                quo, perspiciatis voluptas totam
+                            </p>
+                            <a href="javascript:void(0)" class="btn-card">Read More</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!--/ .What We Offer-->
+    <div class="clearfix"></div>
+    <!--Served Peoples-->
+    <div class="serve-peoplebg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <h3>Counts that matter 
+                    </h3>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="project-icon"><img src="assets/img/project-icon1.png" alt=""></div>
+                    <h2>971<br>
+                        <span>Projects Done</span>
+                    </h2>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="project-icon"><img src="assets/img/project-icon2.png" alt=""></div>
+                    <h2>250<br>
+                        <span>People Working</span>
+                    </h2>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="project-icon"><img src="assets/img/project-icon3.png" alt=""></div>
+                    <h2>64<br>
+                        <span>Business Partners</span>
+                    </h2>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="project-icon"><img src="assets/img/project-icon4.png" alt=""></div>
+                    <h2>2586<br>
+                        <span>Happy Customers</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ .Served Peoples-->
+    <div class="clearfix"></div>
+    <!--Recent Works-->
+    <div class="recent-workbg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <h3>Recent activities</h3>
+                    <p>A gallery to summarize our distinguished services </p>
+                </div>
+                <div class="clearfix"></div>
+                <div class="container-fluid gallery">
+                    <div class="row">
+                        <div class="" style="height: 25px; float: left; width: 100%;"></div>
+                        <div class="col-sm-4 col-xs-12 thumb" *ngFor="let recentWork of recentWorkList; let i = index">
+                            <a class="thumbnail" href="javascript:void(0)" data-image-id="" data-toggle="modal"
+                                data-title="" data-image="img/gallery-img1.jpg" data-target="#image-gallery">
+                                <img class="img-thumbnail" [src]="imageBaseUrl+recentWork.image_large" alt="Another alt text">
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog"
+                        aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <img id="image-gallery-image" class="img-responsive col-md-12" src="">
+                                </div>
+                                <button type="button" class="btn btn-secondary float-left left1"
+                                    id="show-previous-image"><i class="fa">
+                                        <img src="assets/img/angle-left.png" alt=""></i>
+                                </button>
+                                <button type="button" id="show-next-image"
+                                    class="btn btn-secondary float-right right2"><i class="fa">
+                                        <img src="assets/img/angle-right.png" alt=""></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ .Recent Works-->
+    <div class="clearfix"></div>
+    <!--Testimonials-->
+    <div class="testimonialbg">
+        <div class="container testi-section">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <h3>Testimonials</h3>
+                    <p>Our Patient Feedback</p>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12 col-xs-12">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner mt-4">
+                            <owl-carousel-o [options]="testimonialOptions">
+                                <ng-template carouselSlide *ngFor="let testimonial of testimonialList; let i = index">
+                                    <div class="carousel-item text-center active">
+                                        <div class="img-box p-1 border rounded-circle m-auto">
+                                            <!-- <img class="d-block w-100 rounded-circle" src="http://nicesnippets.com/demo/profile-3.jpg"
+                      alt="First slide"> -->
+
+                                            <img class="d-block w-100" [src]="imageBaseUrl+testimonial.author_image"
+                                                alt="First slide">
+                                        </div>
+                                        <h4 class="m-0 pt-3 text-white">{{testimonial.description}}
+                                        </h4>
+                                        <h5 class=""><strong
+                                                class="text-warning text-uppercase">{{testimonial.author_name}}</strong>
+                                        </h5>
+                                        <h6 class="text-dark m-0">{{testimonial.author_designation}}</h6>
+                                    </div>
+                                </ng-template>
+                                <!-- <ng-template carouselSlide>
+                <div class="carousel-item text-center active">
+                  <div class="img-box p-1 border rounded-circle m-auto">
+                    <img class="d-block w-100 rounded-circle" src="http://nicesnippets.com/demo/profile-3.jpg"
+                      alt="First slide">
+                  </div>
+                  <h4 class="m-0 pt-3 text-white">Kalyan AcharyaLorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nam eu sem
+                    tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada
+                    ante.
+                    Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.
+                  </h4>
+                  <h5 class=""><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
+                  <h6 class="text-dark m-0">Web Designer</h6>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                  <div class="carousel-item text-center active">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe width="560" height="" src="https://www.youtube.com/embed/26bN6AUIfNA"
+                              frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                        <div class="panel-footer">
+                          <div class="panel-footer-txt">
+                            <h5>John Doe</h5>
+                            <div class="testi-right">
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                  </div>
+                </div>
+              
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="carousel-item text-center active">
+                  <div class="img-box p-1 border rounded-circle m-auto">
+                    <img class="d-block w-100 rounded-circle" src="http://nicesnippets.com/demo/profile-7.jpg"
+                      alt="First slide">
+                  </div>
+                  <h4 class="m-0 pt-3 text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem
+                    tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada
+                    ante.
+                    Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.
+                  </h4>
+                  <h5 class=""><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
+                  <h6 class="text-dark m-0">Seo Analyst</h6>
+                </div>
+              </ng-template> -->
+                            </owl-carousel-o>
+                        </div>
+                        <div class="carousel-inner mt-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ .Testimonials-->
+    <!-- Partner Slider -->
+    <div class="partner-slider">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <h3>Our Media Partner</h3>
+                    <p>Our gallery shows what are the services we provide recently.</p>
+                    <!-- <i class="fa fa-linode" aria-hidden="true"></i> -->
+                </div>
+            </div>
+            <div class="container">
+                <section class="customer-logos slider">
+                    <owl-carousel-o [options]="partnerOptions">
+                        <ng-template carouselSlide *ngFor="let media of mediaList; let i = index">
+                            <img [src]="imageBaseUrl+media.image_large">
+                        </ng-template>
+                    </owl-carousel-o>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!--/ .Partner Slider-->
+
+</div>
+<ngx-spinner bdOpacity=1 bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

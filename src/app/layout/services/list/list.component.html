@@ -1,0 +1,30 @@
+<div class="modal-content">
+  <div class="modal-header">
+
+    <h5 class="modal-title" id="exampleModalLabel3">
+      <i class="fa fa-arrow-left" aria-hidden="true" (click)="backModal()"></i>
+      <span>{{parentCatDetails.name}}</span>
+
+    </h5>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row packagesRow">
+      <div class="col-sm-12 col-xs-12 servicesSectionInnerRight">
+        <div class="servicesSectionInnerRightInner-modal">
+          <div class="priestOne">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3"
+              *ngFor="let serviceList of subServiceList; let i = index" (click)="getsubCatListt(serviceList)">
+              {{serviceList.name}} <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</div>

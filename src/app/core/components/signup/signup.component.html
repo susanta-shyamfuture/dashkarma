@@ -1,0 +1,131 @@
+  <!-- Modal SignUp -->
+  <!-- Modal -->
+  <!-- <div class="modal fade login-modal" id="myModal3" role="dialog">
+    <div class="modal-dialog"> -->
+
+  <!-- Modal content-->
+  <div class="login-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sign Up</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="closeSignIn()">&times;</button>
+        </div>
+        <div class="modal-body">
+
+          <form role="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
+
+
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="contact">User Type:</label>
+                  <mat-radio-group aria-label="Select an option" formControlName="user_type">
+                    <mat-radio-button value="2">Customer</mat-radio-button>
+                    <mat-radio-button value="3">Technician</mat-radio-button>
+                    <div class="clearfix"></div>
+                  </mat-radio-group>
+                </div>
+              </div>
+              <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="email">Full Name:</label>
+                  <input type="text" class="form-control" placeholder="Full Name" id="name" name="name"
+                    formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">Name is required</div>
+                    <div *ngIf="f.name.errors.pattern">Only Alphabets are allowed.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="email">Last Nam:</label>
+                  <input type="email" class="form-control" placeholder="Last Nam" id="email" name="email">
+                </div>
+              </div> -->
+
+
+              <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="email">Email ID:</label>
+                  <input type="email" class="form-control" placeholder="Email ID" id="email" name="email"
+                    formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="email">Mobile Number:</label>
+                  <input type="text" class="form-control" placeholder="Mobile Number" id="contact" name="contact"
+                    formControlName="contact" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }">
+
+                  <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                    <div *ngIf="f.contact.errors.required">Mobile Number is required</div>
+                    <div *ngIf="!f.contact.errors.pattern && f.contact.errors.minlength">Mobile Number must be at least 10 numeric characters</div>
+                    <div *ngIf="!f.contact.errors.pattern && f.contact.errors.maxlength">Mobile Number can not be more than 10 numeric characters</div>
+                    <div *ngIf="f.contact.errors.pattern">Only numeric characters are allowed</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="email">Enter OTP:</label>
+                  <!-- <input type="text" class="form-control" placeholder="Enter OTP" id="" name="otp" formControlName="otp"> -->
+                  <input type="text" class="form-control" placeholder="Enter OTP" id="otp" name="otp"
+                  formControlName="otp" [ngClass]="{ 'is-invalid': submitted && f.otp.errors }">
+                <div *ngIf="submitted && f.otp.errors" class="invalid-feedback">
+                  <div *ngIf="f.otp.errors.required">OTP is required</div>
+
+                </div>
+
+
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-xs-12">
+                <p><a (click)="getOtpDetails()">Get OTP</a></p>
+              </div>
+              <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="email">Password:</label>
+                  <input type="password" class="form-control" placeholder="Password" id="password" name="password"
+                    formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <button type="submit" class="btn waves-effect waves-light">Register</button>
+<!-- 
+            <div class="">
+              <h3>Login With :</h3>
+              <h3><a href="javascript:void(0)"><i class="fa"><img src="assets/img/f-2.png" alt="" title=""></i></a>
+                <a href="javascript:void(0)"><i class="fa" aria-hidden="true"><img src="assets/img/mail-2.png" alt=""
+                      title=""></i></a></h3>
+
+            </div> -->
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--       
+    </div>
+  </div> -->
+  <ngx-spinner bdOpacity=1 bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>

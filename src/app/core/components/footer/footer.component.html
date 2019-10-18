@@ -1,0 +1,95 @@
+<div class="clearfix"></div>
+<!-- Footer -->
+<footer class="page-footer font-small bg pt-4 col-xl-12 col-12 p-0">
+  <div class="container">
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-sm-4 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5>About Us</h5>
+          <p>Please your deity in one of the most revered ways – get your certified and experienced purohits committed to taking you closer to your spiritual goals</p>
+          <ul class="list-unstyled">
+            <li><i class="fa" aria-hidden="true"><img src="assets/img/phone.png" alt="" title=""></i> {{settingList.phone_no}}</li>
+            <li><i class="fa" aria-hidden="true"><img src="assets/img/mail.png" alt="" title=""></i> {{settingList.email}}</li>
+            <li><i class="fa" aria-hidden="true"><img src="assets/img/map-icon.png" alt="" title=""></i> {{settingList.address}}</li>
+          </ul>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-sm-4 mb-md-0 mb-3">
+
+          <!-- Links -->
+          <h5>Quick Links</h5>
+
+          <ul class="list-unstyled">
+            <li><a [routerLink]="'/cms/details/about-us'">About Us</a></li>
+            <li><a [routerLink]="'/cms/details/terms-and-conditions'">Terms & Condition</a></li>
+            <li><a [routerLink]="'/cms/details/privacy-policy'">Privacy Policy</a></li>
+            <li><a [routerLink]="'/cms/details/cancel-policy'">Cancel Policy</a></li>
+            <li><a [routerLink]="'/cms/details/faq'">FAQ</a></li>
+            <li><a [routerLink]="'/contactus'">Contact Us</a></li>
+          </ul>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-sm-4 mb-md-0 mb-3">
+
+          <!-- Links -->
+          <h5>Subscribe</h5>
+          <p>Subscribe us for latest updates and more </p>
+          <div class="search-container">
+            <form [formGroup]="subscribeForm" (ngSubmit)="onSubscribeSubmit()">
+              <input type="text" placeholder="Your email address.." name="search" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+              <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            </form>
+              
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback d-block">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+          </div>
+          <div class="social-network">
+            <ul>
+              <li><a href="javascript:void(0)"><i class="fa"><img src="assets/img/f.png" alt="" title=""></i></a></li>
+              <li><a href="javascript:void(0)"><i class="fa"><img src="assets/img/t.png" alt="" title=""></i></a></li>
+              <li><a href="javascript:void(0)"><i class="fa"><img src="assets/img/I.png" alt="" title=""></i></a></li>
+              <li><a href="javascript:void(0)"><i class="fa"><img src="assets/img/y.png" alt="" title=""></i></a></li>
+              <li><a href="javascript:void(0)"><i class="fa"><img src="assets/img/p.png" alt="" title=""></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+  </div>
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12 text-left">
+          <p>© 2019 <a href="javascript:void(0)">10 karma.</a>. All rights reserved.</p>
+        </div>
+        <div class="col-sm-6 col-xs-12 text-right">
+          <p>Design & Development by <a href="https://www.shyamfuture.com/">shyamfuture.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

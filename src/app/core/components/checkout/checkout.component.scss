@@ -1,0 +1,81 @@
+mat-horizontal-stepper {
+    width:100%;
+}
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: #f10640;
+    color: #fff;
+}
+
+.modal-content {
+    height:600px;
+}
+
+.packagesRow {
+    padding: 0px 0px !important;
+}
+
+
+.addAddressaraight {
+    float: right;
+    margin-bottom: 20px;
+}
+
+.addAddressaraight button {
+    float: right;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.tabrowLeft {
+    display: inline-block;
+    order: 0;
+    line-height: inherit;
+    padding-left: 14px;
+    padding-right: 0;
+    padding-top: 20px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.mat-radio-label-content {
+    width: 100%;
+}
+
+.tabrowLeft p {
+    font-size: 12px !important;
+}
+
+.mat-radio-container .mat-radio-outer-circle {
+    box-sizing: border-box;
+    height: 15px !important;
+    left: 0;
+    position: absolute;
+    top: -5px !important;
+    transition: border-color ease 280ms;
+    width: 15px !important;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+.mat-button {
+    margin-top: 20px !important;
+    margin-left: 16px;
+}
+
+
+
+.ng-star-inserted button {
+    background: #f10640;
+    border: 0px;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    float: right;
+}
+
+button.add-address-btn.ng-star-inserted {
+    margin-bottom: 4px;
+    float: right;
+}

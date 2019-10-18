@@ -1,0 +1,42 @@
+.edit-icon-img {
+    position: absolute;
+    right: 102px;
+    top: 59px;
+}
+
+.picbox img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.picbox input {
+    display: none;
+}
+
+.editbox {
+    position: absolute;
+    background: #000;
+    padding: 4px 9px;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    top: 170px;
+    right: 88px;
+    color: #fff;
+}
+
+.editbox input {
+    display: none;
+}
+
+.tab h3 {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.editbox {
+    top: auto;
+    bottom: 0;
+    right: 0;
+}

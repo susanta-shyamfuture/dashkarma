@@ -1,0 +1,41 @@
+<div class="modal-content modal">
+  <div class="modal-header">
+
+    <h5 class="modal-title" id="exampleModalLabel3">
+      <!-- <i class="fa fa-arrow-left" aria-hidden="true" (click)="backModal()"></i> -->
+      <span> My Address</span>
+      <!-- <span> List of Priest</span> -->
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <button type="submit" class="btn waves-effect waves-light" (click)="openAddModal()">Add Address</button>
+    <div class="row packagesRow" *ngFor="let address of addressList; let i = index">
+      <div class="col-lg-9">
+        <h5> {{address.type}}</h5>
+        <p>
+          {{address.address}}
+          {{address.address2}}
+          {{address.city}}
+          {{address.state}}
+          {{address.pincode}}
+        </p>
+      </div>
+      <div class="col-lg-3">
+        <div class="edit-icon">
+          <i class="fa fa-pencil" aria-hidden="true" (click)="editAddress(address)"></i>
+          <i class="fa fa-trash" aria-hidden="true" (click)="deleteAddress(address)"></i>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="no-record" *ngIf="addressList.length == 0">
+      <img src="assets/img/no-record.png">
+      <h3>You don't have any address!!!!</h3>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="detailsbox">
+    <div class="container">
+  
+      <div class="row" *ngIf="isVisible">
+        <div class="col-sm-12 col-xs-12">
+          <div class="detail-top">
+            <div class="row">
+              <div class="col-sm-3 col-xs-12" (click)="goBack()">
+                <h3><a href="javascript:void(0)"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> All
+                    Bookings</a></h3>
+              </div>
+              <div class="col-sm-6 col-xs-12">
+                <h2>
+                  <!-- {{orderList[0].category_name}}<br> -->
+                  {{cat_name}} <br>
+                  <span>Request Date: {{orderDetails.date_created | date: 'MMMM d, y'}}</span></h2>
+  
+              </div>
+              <div class="col-sm-3 col-xs-12">
+  
+                <!-- <button class="btn btn-primary submit pull-right" type="submit" (click)="cancelOrder(orderDetails)">Cancel
+                  Request</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-sm-9 col-xs-12">
+          <div class="detail-left">
+            <h2>Professional Assigned<br>
+              <!-- <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span> -->
+            </h2>
+            <div class="clearfix"></div>
+  
+            <div class="col-sm-12 col-xs-12" *ngFor="let order of orderListt; let i = index">
+              <div class="row">
+                <div class="col-sm-9 col-xs-12">
+                  <div class="userbox2">
+                    <div class="userimg">
+                      <!-- <img alt="First slide" src="http://nicesnippets.com/demo/profile-7.jpg"> -->
+                      <img [src]="imageBaseUrl+order.service_image_large" alt="Priest">
+  
+                    </div>
+                    <h4>{{order.service_name}}</h4>
+                    <p>Qty : {{order.quantity}}</p>
+                    <p>Price : {{order.unit_price}}</p>
+  
+                    <!-- <h5><i class="fa fa-phone" aria-hidden="true"></i> 918071031592</h5> -->
+                  </div>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                  <div class="userbox" >
+                    <div class="userimg">
+                      <!-- <img alt="First slide" src="http://nicesnippets.com/demo/profile-7.jpg"> -->
+                      <img [src]="imageBaseUrl+orderDetails.customer_picture" alt="Priest">
+  
+                    </div>
+                    <h4>{{orderDetails.customer_name}}<br>
+                      {{orderDetails.customer_address}} <br>
+  
+                      <i class="fa fa-phone" aria-hidden="true"></i> {{orderDetails.customer_contact}} <br>
+                      <!-- <span><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                          class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                          class="fa fa-star-half-o" aria-hidden="true"></i> 4.5 (159 review)</span> -->
+                    </h4>
+  
+                    <!-- <h3><i class="fa fa-phone" aria-hidden="true"></i> 918071031592</h3> -->
+                  </div>
+                </div>
+  
+                <div class="userbox">
+                  <h4 *ngIf="order.assign_datetime !='0000-00-00 00:00:00'"><span>Arrival time of professional </span><br>
+                    {{order.assign_datetime | date: 'MMMM d, y'}}</h4>
+                  <!-- <button class="btn btn-primary submit pull-right" type="submit"
+                    *ngIf="order.admin_status < 1" (click)="gotoReschedule(orderDetails.id,order)">Reschedule</button>
+                  <button class="btn btn-primary submit pull-right" type="submit"
+                    (click)="gotoRating(orderDetails.id,order)">Rating</button> -->
+                </div>
+              </div>
+              <div class="clearfix"></div>
+  
+            </div>
+  
+            <!-- <div class="userbox">
+              <div class="userimg"><img alt="First slide" src="http://nicesnippets.com/demo/profile-7.jpg"></div>
+              <h4>Piyail Halder<br>
+                <span><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                    class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                    class="fa fa-star-half-o" aria-hidden="true"></i> 4.5 (159 review)</span></h4>
+  
+              <h3><i class="fa fa-phone" aria-hidden="true"></i> 918071031592</h3>
+            </div> -->
+  
+  
+            <!-- <div class="userbox">
+              <h4><span>Piyail Halder</span><br>
+                Sat,20th Jul-1:00pm</h4>
+            </div>
+            <div class="clearfix"></div>
+  
+            <div class="userbox">
+              <h4><span>Arrival itme of professional </span><br>
+                1:00pm on Sat,20th Jul</h4>
+              <button class="btn btn-primary submit pull-right" type="submit">Reschedule</button>
+            </div> -->
+  
+          </div>
+  
+        </div>
+  
+        <div class="col-sm-3 col-xs-12">
+          <div class="detail-right">
+  
+            <h2>Payment Summary</h2>
+            <h3>Order Id <span>#{{orderDetails.order_no}}</span> </h3>
+            <h3>Booking Amount <span> Rs.{{orderListt[0].total_cost}} </span></h3>
+            <h3>Sub Total <span> Rs.{{orderListt[0].total_cost}} </span></h3>
+            <div class="line"></div>
+            <h4>Amount to be paid <span>Rs.{{orderListt[0].total_cost}}</span></h4>
+  
+          </div>
+        </div>
+  
+  
+      </div>
+  
+    </div>
+  </div>
