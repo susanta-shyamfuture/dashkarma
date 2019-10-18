@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-0 text-right">
                                     <button class="btn btn-primary submit pull-right" type="submit" *ngIf="(order.admin_status < 1) && ((orderDetails.status != '2') && (orderDetails.status != '1'))" (click)="gotoReschedule(order.id,order)">Reschedule</button>
-                                    <button class="btn btn-primary submit pull-right" type="submit" (click)="gotoRating(orderDetails.id,order)" *ngIf="order.technician_id">Rating</button>
+                                    <button class="btn btn-primary submit pull-right" type="submit" (click)="gotoRating(orderDetails.id,order)" *ngIf="order.technician_id && (order.rating_details && !order.rating_details.length)">Rating</button>
                                 </div>
                             </div>
                         </div>
