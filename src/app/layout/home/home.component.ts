@@ -175,51 +175,48 @@ export class HomeComponent implements OnInit {
     var data = {
       'type': 1
     }
-    var dataMedia = {
-      'type': 2
-    }
-    var dataRecentWork = {
-      'type': 3
-    }
+   
     var dataTest = {
 
     }
     forkArray.push(this.mainService.getBannerList(data))
     forkArray.push(this.mainService.getParentCatList(0))
-    forkArray.push(this.mainService.getBannerList(dataMedia))
+   // forkArray.push(this.mainService.getBannerList(dataMedia))
     forkArray.push(this.mainService.getTestimonials(dataTest))
     forkArray.push(this.mainService.getCityList())
     forkArray.push(this.mainService.getbloglist())
-    forkArray.push(this.mainService.getBannerList(dataRecentWork))
+   // forkArray.push(this.mainService.getBannerList(dataRecentWork))
 
     forkJoin(forkArray).subscribe(
       (result: any[]) => {
         for (var i = 0; i < result.length; i++) {
           if (i == 0) {
-            this.bannerList = result[i].result;
+            this.bannerList = result[i].result['Banner'];
+            this.mediaList = result[i].result['Partner'];
+            this.recentWorkList = result[i].result['Recent_Work'];
           }
           if (i == 1) {
             this.catList = result[i].result.list;
           }
 
+          // if (i == 2) {
+          //   this.mediaList = result[i].result;
+          // }
           if (i == 2) {
-            this.mediaList = result[i].result;
-          }
-          if (i == 3) {
             this.testimonialList = result[i].result;
           }
-          if (i == 4) {
+          if (i == 3) {
             this.citylist = result[i].result;
             this.searchForm.patchValue({
               citylist: this.citylist[0].id
             })
           }
-          if (i == 5) {
+          if (i == 4) {
             this.blogList = result[i].result;
           }
-          if (i == 6) {
-            this.recentWorkList = result[i].result;
-          }
+          // if (i == 5) {
+          //   this.recentWorkList = result[i].result;
+          // }
         }
         this.visibleKey = true;
         this.spinner.hide();

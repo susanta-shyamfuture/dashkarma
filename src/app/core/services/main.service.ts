@@ -27,8 +27,7 @@ export class MainService {
   }
 
   getBannerList(data) {
-    // return this.http.get(environment.apiEndpoint + 'galleryimagelist/', {headers: this.headers})
-    return this.http.post(environment.apiEndpoint + 'medialist/', data, {headers: this.headers});
+    return this.http.post(environment.apiEndpoint + 'medialist/',data, {headers: this.headers});
   }
   getParentCatList(id) {
     return this.http.get(environment.apiEndpoint + 'categorylist/' + id, {headers: this.headers});
