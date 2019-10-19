@@ -83,6 +83,7 @@ export class DetailsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.bookingDetails(this.orderid);
     });
   }
 
