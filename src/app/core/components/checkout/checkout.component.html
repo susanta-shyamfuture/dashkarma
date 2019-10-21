@@ -44,11 +44,13 @@
               <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
               
             </mat-form-field> -->
+            <!-- <input matInput placeholder="Location Id" formControlName="location_id" required>
+               -->
             <mat-radio-group aria-label="Select an option" formControlName="firstCtrl" required>
                 <div class="row packagesRow">
               <div class="col-lg-4" *ngFor="let address of addressList; let i = index">
                 <div class="tabrowLeft">
-                <mat-radio-button value="{{address.id}}" >
+                <mat-radio-button [value]="address" >
                   <p>{{address.type}} <br>
                   {{address.address}}
                   {{address.pincode}}</p>

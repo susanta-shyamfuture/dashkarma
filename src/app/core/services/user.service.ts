@@ -69,6 +69,8 @@ export class UserService {
     return this.http.post(environment.apiEndpoint + 'userprofileimageupdate/'+userId, form, {headers: this.headers})
   }
 
-
+  defaultAddress(data) {
+    return this.http.post(environment.apiEndpoint + 'setdefaultaddress/', data, {headers: this.headers});
+  }
 
 }

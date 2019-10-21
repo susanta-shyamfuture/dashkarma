@@ -13,7 +13,7 @@
   <div class="modal-body">
     <button type="submit" class="btn waves-effect waves-light" (click)="openAddModal()">Add Address</button>
     <div class="row packagesRow" *ngFor="let address of addressList; let i = index">
-      <div class="col-lg-9">
+      <div class="col-lg-8">
         <h5> {{address.type}}</h5>
         <p>
           {{address.address}}
@@ -23,8 +23,9 @@
           {{address.pincode}}
         </p>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="edit-icon">
+    <button type="button" (click)="setDefaultAddress(address)" class="default-btn" [ngClass]="{'default':address.is_default==1,'no-default':address.is_default==0}">Default</button>
           <i class="fa fa-pencil" aria-hidden="true" (click)="editAddress(address)"></i>
           <i class="fa fa-trash" aria-hidden="true" (click)="deleteAddress(address)"></i>
         </div>

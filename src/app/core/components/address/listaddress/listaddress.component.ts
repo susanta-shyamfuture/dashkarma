@@ -85,5 +85,26 @@ export class ListaddressComponent implements OnInit {
     })
   }
 
+  setDefaultAddress(address) {
+    var data = {
+      "id":address.id,
+      "customer_id":localStorage.getItem('userId')
+    }
+     this.userService.defaultAddress(data).subscribe(
+       res => {
+         console.log("Default Result==>", res);
+          this.getAddressList(this.userId);
+        //  this.toastr.success('Addreess Deleted Succesfully', '', {
+        //         timeOut: 3000,
+        //  });
+       },
+       error => {
+         console.log(error.error);
+         // this.toastr.error('Error!!!', '', {
+         //   timeOut: 3000,
+         // });
+       }
+     )
 
+   }
 }

@@ -39,7 +39,7 @@ export class CheckoutComponent implements OnInit {
     this.userId = localStorage.getItem('userId');
     this.getAddressList(this.userId);
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['2', Validators.required]
@@ -47,13 +47,12 @@ export class CheckoutComponent implements OnInit {
 
     if (localStorage.getItem('cart')) {
       this.customer_cart_data = JSON.parse(localStorage.getItem('cart'));
+      console.log("Check out Page Cart Data==>",this.customer_cart_data);
       this.subTotal = parseFloat(localStorage.getItem('final_price'));
     } else {
       this.customer_cart_data = [];
       this.subTotal = 0;
     }
-
-    console.log();
   }
 
   ngAfterViewInit() {
@@ -92,9 +91,9 @@ export class CheckoutComponent implements OnInit {
         this.addressList = res['result'];
         console.log('Address Length==>',this.addressList.length);
         if(this.addressList.length > 0 ) {
-          this.firstFormGroup.value.firstCtrl = this.addressList[0].id
+          this.firstFormGroup.value.firstCtrl = this.addressList[0]
         this.firstFormGroup = this._formBuilder.group({
-          firstCtrl: [this.addressList[0].id, Validators.required]
+          firstCtrl: [this.addressList[0], Validators.required],
         });
         }
       },
@@ -104,9 +103,15 @@ export class CheckoutComponent implements OnInit {
     )
   }
 
-  selectedAddress() {
+  selectedAddress(address) {
+    console.log("kkkk1232=>",this.firstFormGroup.value);
     this.userselectedAddress = this.firstFormGroup.value.firstCtrl;
     console.log('Selected Address==>',this.userselectedAddress);
+    this.customer_cart_data.map(data => {
+      data.location_id = this.userselectedAddress.service_location;
+    });
+
+
   }
   selectedPayOption() {
     if (this.secondFormGroup.valid) {
@@ -116,7 +121,7 @@ export class CheckoutComponent implements OnInit {
 
       const data: any = {
         order_total_price: this.subTotal,
-        address_id: this.userselectedAddress,
+        address_id: this.userselectedAddress.id,
         customer_id: this.userId,
         payment_type: this.userselectedPayment,
         order_details: this.customer_cart_data,

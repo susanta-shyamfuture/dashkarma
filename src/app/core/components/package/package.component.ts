@@ -94,6 +94,8 @@ export class PackageComponent implements OnInit {
         this.isVisible = true;
         console.log("Package Details==>", res);
         this.parentCatDetails = res['result']['parent'][0]['detail'];
+
+        console.log("Parent Details==>",this.parentCatDetails);
         this.packageList = res['result']['list'];
         this.packageList.forEach((x, i) => {
           var index = this.customer_cart_data.findIndex(y => y.service_id == x.id);
@@ -127,7 +129,8 @@ export class PackageComponent implements OnInit {
     this.getPackageList(this.serviceDetails);
     this.getTotalItemPrice();
   }
-  addtoCart(item, dateValue) {
+  addtoCart(item,dateValue) {
+    console.log("kkk==>",item);
     // console.log(item, moment(dateValue._selected).format('YYYY-MM-DD HH:m:s'));
     console.log(this.selectedMoment, dateValue);
     // this.selectedMoment = '';
@@ -145,7 +148,8 @@ export class PackageComponent implements OnInit {
         unit_price : item.service_charge,
        //  visiting_charge : item.visiting_charge,
         image_large : item.image_large,
-        assinged_datetime: this.assingedDatetime
+        assinged_datetime: this.assingedDatetime,
+        service_category_id: item.pid1
        //  image_small : item.image_small
       };
       // console.log(data);
