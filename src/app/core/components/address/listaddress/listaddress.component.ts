@@ -32,7 +32,7 @@ export class ListaddressComponent implements OnInit {
       error => {
         console.log(error.error);
       }
-    )
+    );
   }
 
   closeModal() {
