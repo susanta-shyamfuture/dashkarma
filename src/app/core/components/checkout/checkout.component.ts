@@ -103,7 +103,7 @@ export class CheckoutComponent implements OnInit {
     )
   }
 
-  selectedAddress(address) {
+  selectedAddress() {
     console.log("kkkk1232=>",this.firstFormGroup.value);
     this.userselectedAddress = this.firstFormGroup.value.firstCtrl;
     console.log('Selected Address==>',this.userselectedAddress);
