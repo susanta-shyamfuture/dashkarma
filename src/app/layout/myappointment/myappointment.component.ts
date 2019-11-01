@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {  MainService} from "../../core/services/main.service";
+import { MainService } from '../../core/services/main.service';
 @Component({
   selector: 'app-myappointment',
   templateUrl: './myappointment.component.html',

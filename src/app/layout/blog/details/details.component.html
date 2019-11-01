@@ -99,7 +99,7 @@
                   <article class="popular-blogs-container"
                     *ngIf="removeCurrent(blogList).length;else noRecentPostsFound">
                     <article class="item" *ngFor="let blog of removeCurrent(blogList) | slice:0:4; trackBy:trackByBlogId">
-                      <a href="javascript:void(0)" class="thumb d-inline-block">
+                      <a [routerLink]="['/blog/details', blog.id]" class="thumb d-inline-block">
                         <img *ngIf="blog.image_small" [src]="imageBaseUrl + blog.image_small">
                       </a>
                       <div class="info">

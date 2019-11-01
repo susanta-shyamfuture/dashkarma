@@ -1,0 +1,83 @@
+<section class="innerbanner">
+  <img src="assets/img/contact.jpg" alt="">
+</section>
+<div class="editporfilebg">
+  <div class="container">
+     <div class="row">
+        <div class="col-lg-3">
+           <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-9">
+           <h2>Fees Collected</h2>
+           <div class="editporfilebgInner">
+              <form [formGroup]="getWalletDetailsForm" (ngSubmit)="getDate(dateRange)">
+                <div class="form-row">
+                  <div class="col-sm-6 my-1">
+                    <label class="sr-only" for="inlineFormInputName">Name</label>
+                    <input type="text" class="form-control" id="inlineFormInputName" placeholder="Select Two Dates" [owlDateTime]="dateRange" [owlDateTimeTrigger]="dateRange" selectMode="range" rangeSeparator="-" formControlName="dateRangeInput"
+                    [ngClass]="{ 'is-invalid': submitted && f.dateRangeInput.errors }">
+                    <owl-date-time #dateRange pickerType="calendar"></owl-date-time>
+                    <div *ngIf="submitted && f.dateRangeInput.errors" class="invalid-feedback">
+                      <div *ngIf="f.dateRangeInput.errors.required">Please Two Dates.</div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm-5 my-1">
+                    <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username" [owlDateTime]="toDate" [owlDateTimeTrigger]="toDate" selectMode="rangeTo">
+                    <owl-date-time #toDate pickerType="calendar"></owl-date-time>
+                  </div> -->
+                  <div class="col-auto my-1">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form>
+              <div class="table-responsive mt-3" *ngIf="userWalletDetails">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Transaction Date</th>
+                      <th scope="col">Mode</th>
+                      <th scope="col">Type</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="userWalletDetails.length; else noPaymentsFound">
+                    <tr *ngFor="let payment of userWalletDetails; let i = index;">
+                      <th scope="row">
+                        {{i+1}}
+                      </th>
+                      <td>
+                        {{ payment.amount }}
+                      </td>
+                      <td>
+                        {{ payment.created_at | date:'dd/MM/yyyy' }}
+                      </td>
+                      <td class="text-capitalize">
+                        {{ payment.mode }}
+                      </td>
+                      <td
+                        class="text-capitalize"
+                        [class.text-success]="payment.type == 'credit'"
+                        [class.text-danger]="payment.type == 'debit'"
+                      >
+                        {{ payment.type }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <ng-template #noPaymentsFound>
+                  <tbody>
+                    <tr>
+                      <td class="text-center" colspan="5">No payments found.</td>
+                    </tr>
+                  </tbody>
+                </ng-template>
+              </div>
+           </div>
+
+
+        </div>
+     </div>
+  </div>
+</div>

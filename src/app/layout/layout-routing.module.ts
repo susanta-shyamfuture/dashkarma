@@ -20,6 +20,7 @@ const routes: Routes = [
       { path: 'ordersucces/:id', loadChildren: './ordersucces/ordersucces.module#OrdersuccesModule' },
       { path: 'wallet', loadChildren: './wallet/wallet.module#WalletModule' },
       { path: 'myappointment', loadChildren: './myappointment/myappointment.module#MyappointmentModule' },
+      { path: 'fees-collected', loadChildren: './fees-collected/fees-collected.module#FeesCollectedModule' },
       { path: 'test', loadChildren: './test/test.module#TestModule' },
       { path: 'serviceaddress', loadChildren: './serviceaddress/serviceaddress.module#ServiceaddressModule' },
       { path: 'vreviews', loadChildren: './vreviews/vreviews.module#VreviewsModule' },

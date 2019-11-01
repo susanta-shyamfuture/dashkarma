@@ -150,6 +150,10 @@ export class MainService {
   completeOrder(data) {
     return this.http.post(environment.apiEndpoint + 'uvchangestatus/', data, {headers: this.headers});
   }
+  
+  getUserWalletDetails(data) {
+    return this.http.post(environment.apiEndpoint + 'getuserwalletdetails/', data, {headers: this.headers});
+  }
 
  
 
