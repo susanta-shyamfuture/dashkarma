@@ -56,7 +56,7 @@ export class FeesCollectedComponent implements OnInit {
             this.userWalletDetails = res['result'];
             this.getWalletDetailsForm.reset();
             this.submitted = false;
-            this.toastr.success('Data not found. Please try again!', '', {
+            this.toastr.success('Data not found', '', {
               timeOut: 3000,
             });
           }
