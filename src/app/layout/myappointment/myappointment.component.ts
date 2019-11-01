@@ -113,7 +113,8 @@ export class MyappointmentComponent implements OnInit {
   }
 
   gotoDetails(order) {
-    this.router.navigateByUrl('/myappointment/details/' + order.order_id);
+    console.log("kkkjkjkj",order);
+    this.router.navigateByUrl('/myappointment/details/' + order.order_details.order_id);
   }
 
 

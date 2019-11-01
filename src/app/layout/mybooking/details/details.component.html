@@ -94,11 +94,12 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-0 text-right">
                                     <button class="btn btn-primary submit pull-right" type="submit"
-                                        (click)="completeOrder(order.id,order)" *ngIf="order.technician_id && order.user_status <2">Complete</button>
+                                        (click)="completeOrder(order.id,order)"
+                                        *ngIf="order.technician_id && order.user_status <2">Complete</button>
                                     <button disabled class="btn btn-primary submit pull-right" type="submit"
-                                         *ngIf="order.user_status == 2">Completed</button>
+                                        *ngIf="order.user_status == 2">Completed</button>
                                     <button class="btn btn-primary submit pull-right" type="submit"
-                                        *ngIf="(order.user_status < 2 && order.vender_status < 2) && ((orderDetails.status != '2') && (orderDetails.status != '1'))"
+                                        *ngIf="(order.user_status < 2 || order.vender_status < 2) && ((orderDetails.status != '2') && (orderDetails.status != '1'))"
                                         (click)="gotoReschedule(order.id,order)">Reschedule</button>
 
                                     <button class="btn btn-primary submit pull-right" type="submit"

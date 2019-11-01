@@ -114,7 +114,7 @@ export class DetailsComponent implements OnInit {
       "id":orderid,
       "order_id":this.orderid,
       "service_id":service.service_id,
-      "vendor_id":this.userId,
+      "vendor_id":service.technician_id,
       "service_cost":service.total_cost,
       "user_status":"2",
       "vendor_status":service.vendor_status
