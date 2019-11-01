@@ -35,19 +35,15 @@ export class WalletComponent implements OnInit {
       return;
     }
     else {
-      console.log(this.addwalletForm.value);
       var data = {
         "amount":this.addwalletForm.value.amount,
         "user_id": localStorage.getItem('userId'),
         "type":'credit',
         "mode":'cash'
       }
-      console.log(data);
-     
       this.mainService.addWallet(data).subscribe(
         res => {
           this.getwalletBalance(localStorage.getItem('userId'));
-          console.log("Login result==>",res);
           this.toastr.success("Wallet balance Added Succesfully", '', {
             timeOut: 3000,
           });
@@ -73,7 +69,6 @@ export class WalletComponent implements OnInit {
     
     this.mainService.getBalance(id).subscribe(
       res => {
-        console.log("Wallet Balance==>", res);
         //this.reviewList = res['result'];
         this.walletBalance  = res['result']['amount'];
       },

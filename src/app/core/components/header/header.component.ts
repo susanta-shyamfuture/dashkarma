@@ -76,7 +76,6 @@ export class HeaderComponent implements OnInit {
   }
 
   expandClose() {
-    // console.log(topNav);
     if (this.openCloseAnim === 'open') {
       this.closeNav();
     } else {
@@ -147,8 +146,6 @@ export class HeaderComponent implements OnInit {
   getServicesList() {
     this.mainService.getParentCatList(0).subscribe(
       res => {
-        //alert(this.keepLogin);
-        // console.log("Category List==>", res);
         this.catList = res['result']['list'];
       },
       error => {
@@ -160,11 +157,10 @@ export class HeaderComponent implements OnInit {
   getSettings() {
     this.mainService.getSettings().subscribe(
       res => {
-      //  console.log("Settings==>",res);
        this.settingList = res['result'][0];
       },
       error => {
-        console.log("Error Get Category",error);
+        console.log(error);
       }
     );
   }

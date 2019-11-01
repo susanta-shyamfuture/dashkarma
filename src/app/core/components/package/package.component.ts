@@ -45,7 +45,6 @@ export class PackageComponent implements OnInit {
       this.userId = '';
     }
     this.serviceDetails = data.service;
-    console.log("Service Details==>", data.service);
     this.getPackageList(this.serviceDetails);
   }
 
@@ -68,7 +67,6 @@ export class PackageComponent implements OnInit {
       this.cartCount =0;
       this.subTotal = 0;
     }
-    console.log("ccc==>",this.customer_cart_data);
   }
 
   cartNumberStatus(status: boolean) {
@@ -92,10 +90,7 @@ export class PackageComponent implements OnInit {
     this.mainService.getPackageList(data).subscribe(
       res => {
         this.isVisible = true;
-        console.log("Package Details==>", res);
         this.parentCatDetails = res['result']['parent'][0]['detail'];
-
-        console.log("Parent Details==>",this.parentCatDetails);
         this.packageList = res['result']['list'];
         this.packageList.forEach((x, i) => {
           var index = this.customer_cart_data.findIndex(y => y.service_id == x.id);
@@ -107,9 +102,6 @@ export class PackageComponent implements OnInit {
             this.packageList[i].quantity = 0;
           }
         })
-
-        console.log("Package Details Kalyan ==>", this.packageList);
-
       },
       error => {
         this.isVisible = true;
@@ -130,12 +122,7 @@ export class PackageComponent implements OnInit {
     this.getTotalItemPrice();
   }
   addtoCart(item,dateValue) {
-    console.log("kkk==>",item);
-    // console.log(item, moment(dateValue._selected).format('YYYY-MM-DD HH:m:s'));
-    console.log(this.selectedMoment, dateValue);
-    // this.selectedMoment = '';
-    console.log(this.selectedMoment, dateValue._selected, moment().format('YYYY-MM-DD HH:m:s'));
-    this.assingedDatetime = dateValue._selected ? moment(dateValue._selected).format('YYYY-MM-DD HH:m:s') : moment().format('YYYY-MM-DD HH:m:s');
+  this.assingedDatetime = dateValue._selected ? moment(dateValue._selected).format('YYYY-MM-DD HH:m:s') : moment().format('YYYY-MM-DD HH:m:s');
     if (localStorage.getItem('userId')) {
       var data = {
         service_id : item.id,
@@ -152,7 +139,6 @@ export class PackageComponent implements OnInit {
         service_category_id: item.pid1
        //  image_small : item.image_small
       };
-      // console.log(data);
       var index = this.customer_cart_data.findIndex(y => y.service_id == item.id);
       if (index == -1) {
         this.customer_cart_data.push(data);
@@ -179,13 +165,10 @@ export class PackageComponent implements OnInit {
       this.customer_cart_data[index].quantity = parseInt(pkgService.quantity) + 1;
       this.setCartData();
     }
-    console.log(this.customer_cart_data);
-    console.log(this.customer_cart_data[index]);
     this.packageList[i].quantity = this.customer_cart_data[index].quantity;
   }
 
   decrement(pkgService, i) {
-  //  console.log(customer_cart_data);
     var index;
     if (pkgService.quantity > 1) {
       index = this.customer_cart_data.findIndex(y => y.service_id == pkgService.id);
@@ -251,14 +234,12 @@ export class PackageComponent implements OnInit {
       // }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log("Cart Close 2019");
       this.getPackageList(this.serviceDetails);
     })
   }
 
 
   removetoCart(item) {
-    console.log("Delete Cart ==>",item);
     var index = this.customer_cart_data.findIndex(y => y.service_id == item.id); 
     if (index != -1) {
       this.customer_cart_data.splice(index, 1);

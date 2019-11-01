@@ -23,7 +23,6 @@ export class BlogComponent implements OnInit {
   getBlogList() {
     this.mainService.getbloglist().subscribe(
       res => {
-        console.log("Blog List 123==>", res);
         this.blogList = res['result'];
        // this.reviewList = res['result'];
       },

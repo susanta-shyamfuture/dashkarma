@@ -24,7 +24,6 @@ export class DetailsComponent implements OnInit {
     private mainService: MainService,
   ) { 
     this.route.params.subscribe(routeParams => {
-      console.log("Order Params ==>",routeParams);
       this.orderid = routeParams.id;
 
       this.bookingDetails(routeParams.id)
@@ -38,14 +37,11 @@ export class DetailsComponent implements OnInit {
   }
 
   bookingDetails(id) {
-    console.log("Order Id===>",id);
     this.mainService.orderDetails(id).subscribe(
       res => {
         this.isVisible =true;
-        console.log("Order Details==>", res);
         this.orderDetails = res['result'];
         this.orderList = res['result']['order_details'];
-       // alert(this.orderList.length);
         this.cat_name = res['result']['order_details'][0]['category_name'];
       },
       error => {
@@ -61,8 +57,6 @@ export class DetailsComponent implements OnInit {
     }
     this.mainService.cancelorder(data).subscribe(
       res => {
-        console.log("Order Details==>", res);
-       // this.orderDetails = res['result'];
        this.bookingDetails(this.orderid);
        this.router.navigateByUrl('/mybooking');
       },
@@ -73,7 +67,6 @@ export class DetailsComponent implements OnInit {
   }
 
   gotoRating(orderid,service) {
-    console.log("Service==>",service);
     let dialogRef = this.dialog.open(RatingComponent, {
       width: '900px',
       height:'600px',
@@ -88,7 +81,6 @@ export class DetailsComponent implements OnInit {
   }
 
   gotoReschedule(orderid,service) {
-    console.log(orderid, service);
     const dialogRef = this.dialog.open(RescheduleComponent, {
       width: '900px',
       height: '600px',
@@ -104,6 +96,25 @@ export class DetailsComponent implements OnInit {
 
   goBack() {
     this.router.navigateByUrl('/mybooking');
+  }
+
+  completeOrder(orderid,service) {
+    console.log("Complete Order Id ==>",orderid);
+    console.log("Complete Service ==>",service);
+    var data = {
+      "id":orderid,
+      "user_status":"2",
+      "vendor_status":service.vendor_status
+    }
+    this.mainService.completeOrder(data).subscribe(
+      res => {
+       this.bookingDetails(this.orderid);
+       //this.router.navigateByUrl('/mybooking');
+      },
+      error => {
+        console.log(error.error);
+      }
+    )
   }
 
 }

@@ -38,7 +38,6 @@ export class EditComponent implements OnInit {
     }
     this.userService.userDetails(id,data).subscribe(
       res => {
-        console.log("Profile User Details==>",res);
         this.userDetails = res['result']['detail'];
 
         this.profileEditForm.patchValue({
@@ -47,13 +46,9 @@ export class EditComponent implements OnInit {
           contact: this.userDetails.contact,
           about_me: this.userDetails.bio
         });
-        console.log("kkkk==>",this.profileEditForm);
-
       },
       error => {
-        console.log("Error Get Category",error);
-
-        
+        console.log(error);
       }
     )
   }
@@ -67,7 +62,6 @@ export class EditComponent implements OnInit {
     }
 
     else {
-        console.log(this.profileEditForm.value);
         var data = {
           user_type: localStorage.getItem('userType'),
           name: this.profileEditForm.value.name,
@@ -76,11 +70,8 @@ export class EditComponent implements OnInit {
           about_me: this.profileEditForm.value.about_me,
           profile_image: ''
         };
-
-        console.log(data);
         this.userService.editProfile( this.userId,data).subscribe(
           res => {
-            console.log("Edit Profile Result==>", res);
             localStorage.setItem('userName', res['result']['detail']['name']);
             localStorage.setItem('userEmail', res['result']['detail']['email']);
             localStorage.setItem('userContact', res['result']['detail']['contact']);

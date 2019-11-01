@@ -38,7 +38,6 @@ export class CartComponent implements OnInit {
       this.userId = '';
     }
  //   this.serviceDetails = data.service;
- //   console.log("Service Details==>", data.service);
  //   this.getPackageList(this.serviceDetails);
    }
 
@@ -58,7 +57,6 @@ export class CartComponent implements OnInit {
       this.customer_cart_data = [];
       this.subTotal = 0;
     }
-    console.log("New Cart Data ==>",this.customer_cart_data);
   }
 
 
@@ -192,7 +190,6 @@ export class CartComponent implements OnInit {
   }
 
   increment(pkgService, i) {
-    console.log("Increment==>",pkgService);
     var index = this.customer_cart_data.findIndex(y => y.service_id == pkgService.service_id);
     if (index != -1) {
       this.customer_cart_data[index].quantity = parseInt(pkgService.quantity) + 1;
@@ -202,8 +199,6 @@ export class CartComponent implements OnInit {
   }
 
   decrement(pkgService, i) {
-    console.log("Decrement==>",pkgService);
-    console.log("bbb",this.customer_cart_data);
     var index;
     if (pkgService.quantity > 1) {
       index = this.customer_cart_data.findIndex(y => y.service_id == pkgService.service_id);
@@ -275,7 +270,6 @@ export class CartComponent implements OnInit {
 
 
   removetoCart(item) {
-    console.log("Delete Cart ==>",item);
     var index = this.customer_cart_data.findIndex(y => y.service_id == item.service_id); 
     if (index != -1) {
       this.customer_cart_data.splice(index, 1);

@@ -14,7 +14,6 @@ export class MainService {
   ) { 
     const login = 'admin';
     const password = '12345';
-    console.log('Hello ServicesProvider Provider');
     this.headers = new HttpHeaders().set('x-api-key', 'Shyam@12345').set('Authorization', 'Basic ' + btoa(login + ':' + password) );
 
   }
@@ -146,6 +145,10 @@ export class MainService {
 
   subscribe(data) {
     return this.http.post(environment.apiEndpoint + 'addsubscriber/', data, {headers: this.headers});
+  }
+
+  completeOrder(data) {
+    return this.http.post(environment.apiEndpoint + 'uvchangestatus/', data, {headers: this.headers});
   }
 
  

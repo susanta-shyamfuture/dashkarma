@@ -51,12 +51,9 @@ export class SigninComponent implements OnInit {
     }
     else {
       this.spinner.show();
-      console.log(this.signInForm.value);
-    //  this.signInForm.value.user_type =2;
-    //  console.log(this.signInForm.value);
       this.userService.userSignin(this.signInForm.value).subscribe(
         res => {
-          console.log("Login result==>",res);
+          console.log("Login ==>",res);
           if(res['status']==true) {
             localStorage.setItem('isLoggedin', 'true');
             localStorage.setItem('userId', res['result']['detail']['id']);
@@ -65,7 +62,6 @@ export class SigninComponent implements OnInit {
             localStorage.setItem('userEmail', res['result']['detail']['email']);
             localStorage.setItem('userContact', res['result']['detail']['contact']);
            // localStorage.setItem('userImage', res['result']['profile_image']);
-           console.log("User Id ==>",localStorage.getItem('userId'));
             this.userService.loginStatus(true);
             this.router.navigate(['/home']);
             this.dialogRef.close(true);
@@ -79,7 +75,6 @@ export class SigninComponent implements OnInit {
               timeOut: 3000,
             });
           }
-          console.log("Login Result==>", res);
           this.spinner.hide();
           
         },

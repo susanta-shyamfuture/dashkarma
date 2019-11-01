@@ -14,7 +14,6 @@ export class UserService {
   ) { 
     let login = 'admin';
     let password = '12345';
-    console.log('Hello ServicesProvider Provider');
     this.headers = new HttpHeaders().set('x-api-key', 'Shyam@12345').set('Authorization', "Basic " + btoa(login + ':' + password) );
   }
   loginStatus(data): Observable<any> {

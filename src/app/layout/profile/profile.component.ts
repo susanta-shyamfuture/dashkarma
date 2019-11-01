@@ -43,27 +43,16 @@ export class ProfileComponent implements OnInit {
     }
     this.userService.userDetails(id,data).subscribe(
       res => {
-        console.log("Profile User Details==>",res);
         this.userDetails = res['result']['detail'];
-
-        // this.profileViewForm.patchValue({
-        //   name: this.userDetails.name,
-        //   email: this.userDetails.email,
-        //   contact: this.userDetails.contact
-        // });
         this.profileViewForm.patchValue({
           name: this.userDetails.name,
           email: this.userDetails.email,
           contact: this.userDetails.contact,
           about_me: this.userDetails.bio
         });
-        console.log("kkkk==>",this.profileViewForm);
-
       },
       error => {
-        console.log("Error Get Category",error);
-
-        
+        console.log(error);
       }
     )
   }

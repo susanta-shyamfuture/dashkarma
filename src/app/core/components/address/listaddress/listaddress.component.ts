@@ -26,7 +26,6 @@ export class ListaddressComponent implements OnInit {
   getAddressList(id) {
     this.userService.userlistAddress(id).subscribe(
       res => {
-        console.log("Address List==>", res);
         this.addressList = res['result'];
       },
       error => {
@@ -58,7 +57,6 @@ export class ListaddressComponent implements OnInit {
    }
     this.userService.deleteAddress(data).subscribe(
       res => {
-        console.log("Address Result==>", res);
         this.getAddressList(this.userId);
         this.toastr.success('Addreess Deleted Succesfully', '', {
                timeOut: 3000,
@@ -92,7 +90,6 @@ export class ListaddressComponent implements OnInit {
     }
      this.userService.defaultAddress(data).subscribe(
        res => {
-         console.log("Default Result==>", res);
           this.getAddressList(this.userId);
         //  this.toastr.success('Addreess Deleted Succesfully', '', {
         //         timeOut: 3000,

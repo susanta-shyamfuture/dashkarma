@@ -27,12 +27,8 @@ export class DetailsComponent implements OnInit {
     private mainService: MainService,
   ) { 
     this.route.params.subscribe(routeParams => {
-      console.log("Order Params ==>",routeParams);
       this.orderid = routeParams.id;
-
       this.bookingDetails(routeParams.id)
-
-     
     });
   }
 
@@ -42,17 +38,14 @@ export class DetailsComponent implements OnInit {
   }
 
   bookingDetails(id) {
-    console.log("Order Id===>",id);
     this.mainService.orderDetails(id).subscribe(
       res => {
         this.orderListt=[];
         this.isVisible =true;
-        console.log("Order Details==>", res);
         this.orderDetails = res['result'];
         this.orderList = res['result']['order_details'];
 
         this.orderList.forEach(element => {
-          console.log("KKKKKK==>",element);
           if(element.assign_vendor_id == this.userId){
             this.orderListt.push(element)              
           }
@@ -73,8 +66,6 @@ export class DetailsComponent implements OnInit {
     }
     this.mainService.cancelorder(data).subscribe(
       res => {
-        console.log("Order Details==>", res);
-       // this.orderDetails = res['result'];
        this.bookingDetails(this.orderid);
        this.router.navigateByUrl('/mybooking');
       },
@@ -112,6 +103,27 @@ export class DetailsComponent implements OnInit {
 
   goBack() {
     this.router.navigateByUrl('/mybooking');
+  }
+
+  completeOrder(orderid,service) {
+    console.log("Complete Order Id ==>",orderid);
+    console.log("Complete Service ==>",service);
+    var data = {
+      "id":orderid,
+      "user_status":service.user_status,
+      "vendor_status":"2"
+    }
+
+    console.log("Data==>",data);
+    this.mainService.completeOrder(data).subscribe(
+      res => {
+       this.bookingDetails(this.orderid);
+       //this.router.navigateByUrl('/mybooking');
+      },
+      error => {
+        console.log(error.error);
+      }
+    )
   }
 
 }

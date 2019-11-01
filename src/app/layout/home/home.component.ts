@@ -281,10 +281,8 @@ export class HomeComponent implements OnInit {
       "service_id":this.selectedService,
       "location_id":this.searchForm.value.citylist
     }
-    console.log("yyy==>",data);
     this.mainService.getSearchResultStatus(data).subscribe(
       res => {
-        console.log(res);
         if(res['status'] ==false) {
         this.toastr.error("Sorry, at present we don’t provide service in this location", '', {
                   timeOut: 3000,
@@ -293,8 +291,6 @@ export class HomeComponent implements OnInit {
         else {
           this.router.navigateByUrl('/services/' + this.selectedService);
         }
-        // this.searchList = res['result'];
-        // console.log("Serach List==>",this.searchList);
       },
       error => {
         console.log(error.error);
@@ -304,17 +300,13 @@ export class HomeComponent implements OnInit {
   }
 
   searchClient(searchKey) {
-    console.log("kkk==>",searchKey);
   }
 
   onSearchChange(searchKey) {
-    console.log("kkk==>",searchKey);
-
    // if(searchKey.length>2) {
       this.mainService.searchServices(searchKey).subscribe(
         res => {
           this.searchList = res['result'];
-          console.log("Serach List==>",this.searchList);
         },
         error => {
           console.log(error.error);
@@ -332,7 +324,6 @@ export class HomeComponent implements OnInit {
   }
 
   selectSearchService(key) {
-    console.log("selected Key==>",key);
     this.selectedService = key.id;
     this.searchForm.value.searchtxt = key.name;
 
@@ -350,10 +341,8 @@ export class HomeComponent implements OnInit {
   //   this.mainService.getSearchResultStatus(data).subscribe(
   //     res => {
   //       // this.searchList = res['result'];
-  //       // console.log("Serach List==>",this.searchList);
   //     },
   //     error => {
-  //       console.log(error.error);
   //       // this.toastr.error('Error!!!', '', {
   //       //   timeOut: 3000,
   //       // });

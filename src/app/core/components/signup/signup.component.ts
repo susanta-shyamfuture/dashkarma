@@ -43,13 +43,11 @@ export class SignupComponent implements OnInit {
   get f() { return this.signUpForm.controls; }
 
   getOtpDetails() {
-    console.log("cccc==>", this.signUpForm.value.contact);
     var data = {
       "contact": this.signUpForm.value.contact
     }
     this.userService.userOtp(data).subscribe(
       res => {
-        console.log("Signup Result==>", res);
         if (res['status'] == true) {
           this.getOtp = res['result']['otp'];
           this.toastr.success(res['result']['message'], '', {
@@ -85,8 +83,6 @@ export class SignupComponent implements OnInit {
     else {
       this.spinner.show();
       if (this.signUpForm.value.otp == this.getOtp) {
-        console.log(this.signUpForm.value);
-
         var data = {
           "name": this.signUpForm.value.name,
           "email": this.signUpForm.value.email,
@@ -95,11 +91,8 @@ export class SignupComponent implements OnInit {
           "user_type": this.signUpForm.value.user_type,
 
         }
-
-        console.log(data);
         this.userService.userSignup(data).subscribe(
           res => {
-            console.log("Signup Result==>", res);
             if (res['status'] == true) {
               this.signUpForm.reset();
               this.dialogRef.close(true);

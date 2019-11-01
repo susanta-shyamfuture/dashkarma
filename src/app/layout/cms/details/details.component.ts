@@ -24,10 +24,9 @@ export class DetailsComponent implements OnInit {
     this.mainService.cmsDetails(name).subscribe(
       res => {
        this.cmsDetails = res['result'][0];
-       console.log("Cms Details==>",this.cmsDetails);
       },
       error => {
-        console.log("Error Get Category",error);
+        console.log(error);
 
         
       }

@@ -74,7 +74,6 @@ export class ForgotpasswordComponent implements OnInit {
       return;
     }
     else {
-      // console.log("Forgot Password Form==>",this.forgotForm.value);
       // this.isMobileForm = false;
       // this.isOtpForm =true;
       // this.isPasswordForm =false;
@@ -85,7 +84,6 @@ export class ForgotpasswordComponent implements OnInit {
 
       this.userService.userForgotPassword(this.forgotForm.value).subscribe(
         res => {
-          console.log("Forgotpassword Result==>", res);
           if (res['status'] == true) {
             this.forgotForm.reset();
             this.getOtp = res['result']['otp'];
@@ -145,16 +143,13 @@ export class ForgotpasswordComponent implements OnInit {
       return;
     }
     else {
-      console.log("Change Password Form Value ==>", this.changePasswordForm.value);
       var data = {
         "contact":this.contactno,
         "user_type":this.usertype,
         "password":this.changePasswordForm.value.newpass
       }
-      console.log("Pass==>",data);
       this.userService.userForgotPasswordUpdate(data).subscribe(
         res => {
-          console.log("Forgotpassword Result==>", res);
           if (res['status'] == true) {
             this.dialogRef.close(true);
             this.router.navigate(['/home']);

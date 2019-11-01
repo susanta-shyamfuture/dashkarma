@@ -40,11 +40,9 @@ export class ContactusComponent implements OnInit {
   //     return;
   //   }
   //   else {
-  //     console.log("Contact Form Value==>",this.contactForm.value);
   //     // this.userService.userSignin(this.contactForm.value).subscribe(
   //     //   res => {
   //     //     //alert(this.keepLogin);
-  //     //     console.log("Login Result==>", res);
   //     this.submitted = false;
   //     this.contactForm.reset();
 
@@ -53,7 +51,6 @@ export class ContactusComponent implements OnInit {
   //         });
   //     //   },
   //     //   error => {
-  //     //     console.log(error.error);
   //     //     this.toastr.error('Sorry! Please enter valid login creadentials', '', {
   //     //       timeOut: 3000,
   //     //     });
@@ -98,11 +95,10 @@ export class ContactusComponent implements OnInit {
   getSettings() {
     this.mainService.getSettings().subscribe(
       res => {
-       console.log("Settings==>",res);
        this.settingList = res['result'][0];
       },
       error => {
-        console.log("Error Get Category",error);
+        console.log(error);
       }
     )
   }

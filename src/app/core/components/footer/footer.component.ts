@@ -36,7 +36,7 @@ export class FooterComponent implements OnInit {
        this.settingList = res['result'][0];
       },
       error => {
-        console.log('Error Get Category',error);
+        console.log(error);
       }
     )
   }
@@ -44,7 +44,6 @@ export class FooterComponent implements OnInit {
   onSubscribeSubmit() {
     this.submitted = true;
     if (this.subscribeForm.valid) {
-      console.log("kkkk==>",this.subscribeForm.value);
       var data = {
         "email": this.subscribeForm.value.email,
       }

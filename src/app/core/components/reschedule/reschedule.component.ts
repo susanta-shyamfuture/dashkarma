@@ -21,7 +21,6 @@ export class RescheduleComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data
   ) { 
     this.orderId = data.orderId;
-    console.log("Order Id==>", this.orderId);
   }
 
   ngOnInit() {
@@ -32,17 +31,14 @@ export class RescheduleComponent implements OnInit {
   }
 
   getReschedule(dt1) {
-    console.log("kk==>",dt1._selected);
     if (dt1._selected) {
       this.newdate = moment(dt1._selected).format('YYYY-MM-DD HH:m:s');
-      console.log("zzz==>",this.newdate);
       const data = {
         id: this.orderId,
         reschedule: this.newdate,
       };
       this.mainService.rescheduleService(data).subscribe(
         res => {
-          console.log('Reschedule Result==>', res);
           if (res['status'] == true) {
             this.dialog.closeAll();
             this.toastr.success('your request for reschedule has been send', '', {

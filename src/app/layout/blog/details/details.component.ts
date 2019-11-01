@@ -32,14 +32,12 @@ export class DetailsComponent implements OnInit {
         this.blogid = this.route.snapshot.params.id;
         this.getBlogData(this.route.snapshot.params.id);
         this.getBlogList();
-        console.log(this.blogid);
       }
 
       if (event instanceof NavigationError) {
         // Hide loading indicator
 
         // Present error to user
-        console.log(event.error);
       }
     });
   }
@@ -53,11 +51,7 @@ export class DetailsComponent implements OnInit {
   getBlogData(blogId) {
     this.mainService.getBlogById(blogId).subscribe(
       res => {
-        console.log("Blog Data==>", res);
         this.blogData = res['result'];
-        // this.blogData['is_active'] = "0";
-        // this.blogData['is_deleted'] = "1";
-        // this.reviewList = res['result'];
       },
       error => {
         console.log(error.error);
@@ -68,7 +62,6 @@ export class DetailsComponent implements OnInit {
   getBlogList() {
     this.mainService.getbloglist().subscribe(
       res => {
-        console.log("Blog List 123==>", res);
         this.blogList = res['result'];
       },
       error => {

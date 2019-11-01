@@ -19,7 +19,6 @@ export class ListComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
     dialogRef.disableClose = true;
-    console.log("kkkk==>",data.service);
     this.subCatList(data.service.id)
   }
 
@@ -33,7 +32,6 @@ export class ListComponent implements OnInit {
  //   this.spinner.show();
     this.mainService.getSubCatList(id).subscribe(
       res => {
-        console.log("Sub Cat List==>", res);
         this.parentCatDetails = res['result']['parent'][0]['detail'];
         this.subServiceList =res['result']['list'];
      //   this.spinner.hide();
@@ -46,14 +44,11 @@ export class ListComponent implements OnInit {
   }
 
   getsubCatListt(servicelist) {
-    console.log("click123==>",servicelist.subcategories.length);
     if(servicelist.subcategories.length > 0) {
       this.mainService.getSubCatList(servicelist.id).subscribe(
         res => {
-          console.log("Sub Cat List kalyan==>", res);
           this.parentCatDetails = res['result']['parent'][0]['detail'];
           this.subServiceList =res['result']['list'];
-       //   this.spinner.hide();
         },
         error => {
           console.log(error.error);

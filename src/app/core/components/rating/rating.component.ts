@@ -25,8 +25,6 @@ export class RatingComponent implements OnInit {
     private dialogRef: MatDialogRef<RatingComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    console.log("Order Details==>", data.orderId);
-    console.log("Order ==>", data.service);
     this.orderId = data.orderId;
     this.service = data.service;
 
@@ -65,8 +63,6 @@ export class RatingComponent implements OnInit {
     if (this.ratingForm.invalid) {
       return;
     } else {
-
-      console.log("kkk==>", this.ratingForm.value);
       var data = {
         "order_id": this.orderId,
         "user_id": this.userId,
@@ -77,7 +73,6 @@ export class RatingComponent implements OnInit {
       }
       this.mainService.addRating(data).subscribe(
         res => {
-          console.log(res);
           if (res['status'] == true) {
             this.toastr.success("Thanks for your Rating!!!", '', {
               timeOut: 3000,

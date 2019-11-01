@@ -26,7 +26,6 @@ export class VreviewsComponent implements OnInit {
     }
     this.mainService.listVendorReview(data).subscribe(
       res => {
-        console.log("Review List 123==>", res);
         this.reviewList = res['result'];
       },
       error => {

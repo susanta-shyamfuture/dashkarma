@@ -47,7 +47,6 @@ export class CheckoutComponent implements OnInit {
 
     if (localStorage.getItem('cart')) {
       this.customer_cart_data = JSON.parse(localStorage.getItem('cart'));
-      console.log("Check out Page Cart Data==>",this.customer_cart_data);
       this.subTotal = parseFloat(localStorage.getItem('final_price'));
     } else {
       this.customer_cart_data = [];
@@ -87,9 +86,7 @@ export class CheckoutComponent implements OnInit {
   getAddressList(id) {
     this.userService.userlistAddress(id).subscribe(
       res => {
-        console.log('Address List==>', res);
         this.addressList = res['result'];
-        console.log('Address Length==>',this.addressList.length);
         if(this.addressList.length > 0 ) {
           this.firstFormGroup.value.firstCtrl = this.addressList[0]
         this.firstFormGroup = this._formBuilder.group({
@@ -104,9 +101,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   selectedAddress() {
-    console.log("kkkk1232=>",this.firstFormGroup.value);
     this.userselectedAddress = this.firstFormGroup.value.firstCtrl;
-    console.log('Selected Address==>',this.userselectedAddress);
     this.customer_cart_data.map(data => {
       data.location_id = this.userselectedAddress.service_location;
     });
@@ -117,8 +112,6 @@ export class CheckoutComponent implements OnInit {
     if (this.secondFormGroup.valid) {
       this.isShow = 1;
       this.userselectedPayment = this.secondFormGroup.value.secondCtrl;
-      console.log('Selected Payment==>', this.userselectedPayment);
-
       const data: any = {
         order_total_price: this.subTotal,
         address_id: this.userselectedAddress.id,
@@ -127,12 +120,10 @@ export class CheckoutComponent implements OnInit {
         order_details: this.customer_cart_data,
         // assign_datetime: new Date()
       };
-      console.log('Final Data==>', data);
       // this.mainService.addorder(data).subscribe
       this.mainService.addorder(data).subscribe(
         res => {
           this.isShow = 0;
-          console.log('Order Placed==>', res);
           if (res['status'] == true) {
             //  localStorage.clear();
             localStorage.setItem('cart', '');

@@ -29,7 +29,6 @@ export class AddressComponent implements OnInit {
     private router: Router,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log("kkkk22222==>",data.getAddressData);
     this.userId = localStorage.getItem('userId');
    
     if(data.getAddressData) {
@@ -91,11 +90,10 @@ export class AddressComponent implements OnInit {
     }
     this.mainService.getCityList().subscribe(
       res => {
-        console.log("City List==>",res);
         this.citylist  =  res['result'];
       },
       error => {
-        console.log("Error Get Category",error);
+        console.log(error);
       }
     )
   }
@@ -115,7 +113,6 @@ export class AddressComponent implements OnInit {
     }
 
     else {
-      console.log("Address Form", this.addressForm.value);
       if(this.isEdit) {
         var data = {
           "type": this.addressForm.value.addtype,
@@ -130,7 +127,6 @@ export class AddressComponent implements OnInit {
         }
         this.userService.userupdateAddress(data).subscribe(
           res => {
-            console.log("Address Result==>", res);
             if (res['status'] == true) {
               this.addressForm.reset();
               this.dialogRef.close(true);
@@ -176,7 +172,6 @@ export class AddressComponent implements OnInit {
         }
         this.userService.userAddAddress(data1).subscribe(
           res => {
-            console.log("Address Result==>", res);
             if (res['status'] == true) {
               this.addressForm.reset();
               this.dialogRef.close(true);
@@ -215,7 +210,6 @@ export class AddressComponent implements OnInit {
   getAddressList(id) {
     this.userService.userlistAddress(id).subscribe(
       res => {
-        console.log("Address List==>", res);
         this.addressList = res['result'];
       },
       error => {

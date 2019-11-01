@@ -27,7 +27,7 @@
   
         <div class="col-sm-9 col-xs-12">
           <div class="detail-left">
-            <h2>Professional Assigned<br>
+            <h2>My Appointment Assigned<br>
               <!-- <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span> -->
             </h2>
             <div class="clearfix"></div>
@@ -75,6 +75,9 @@
                     *ngIf="order.admin_status < 1" (click)="gotoReschedule(orderDetails.id,order)">Reschedule</button>
                   <button class="btn btn-primary submit pull-right" type="submit"
                     (click)="gotoRating(orderDetails.id,order)">Rating</button> -->
+
+                    <button class="btn btn-primary submit pull-right" type="submit"
+                                        (click)="completeOrder(order.id,order)">Complete</button>
                 </div>
               </div>
               <div class="clearfix"></div>
