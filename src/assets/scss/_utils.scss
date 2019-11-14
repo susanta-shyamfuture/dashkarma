@@ -3760,7 +3760,14 @@ img {
         padding: 0.54rem 0.30rem;
         font-size: 19px;
     }
-    
+    .carousel-caption h3 {
+        font-size: 25px;
+        line-height: 25px;    
+    }
+    .carousel-caption h3 span {
+        font-size: 15px;
+      }
+
   }
   @media (min-width: 320px) and (max-width: 480px) {
   
