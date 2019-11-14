@@ -5,6 +5,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { environment } from "../../../../environments/environment";
 import { RatingComponent } from '../../../core/components/rating/rating.component';
 import { RescheduleComponent } from '../../../core/components/reschedule/reschedule.component';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -17,22 +19,28 @@ export class DetailsComponent implements OnInit {
   imageBaseUrl:any;
   cat_name:string;
   isVisible:boolean=false;
+  userId:any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog,
     private mainService: MainService,
+    private toastr: ToastrService,
   ) { 
+
     this.route.params.subscribe(routeParams => {
       this.orderid = routeParams.id;
-
       this.bookingDetails(routeParams.id)
-
-     
     });
+    if(localStorage.getItem('userId')){
+      this.userId = JSON.parse(localStorage.getItem('userId'));
+    } else {
+      this.userId = "";
+    }
   }
 
   ngOnInit() {
+    
     this.imageBaseUrl = environment.imageEndpoint;
   }
 
@@ -101,8 +109,13 @@ export class DetailsComponent implements OnInit {
   completeOrder(orderid,service) {
     console.log("Complete Order Id ==>",orderid);
     console.log("Complete Service ==>",service);
+
     var data = {
       "id":orderid,
+      "order_id":this.orderid,
+      "service_id":service.service_id,
+      "vendor_id":service.technician_id,
+      "service_cost":service.total_cost,
       "user_status":"2",
       "vendor_status":service.vendor_status
     }
@@ -110,6 +123,9 @@ export class DetailsComponent implements OnInit {
       res => {
        this.bookingDetails(this.orderid);
        //this.router.navigateByUrl('/mybooking');
+       this.toastr.success("Thanks for complete the order", '', {
+        timeOut: 3000,
+      });
       },
       error => {
         console.log(error.error);

@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { environment } from "../../../../environments/environment";
 import { RatingComponent } from '../../../core/components/rating/rating.component';
 import { RescheduleComponent } from '../../../core/components/reschedule/reschedule.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details',
@@ -25,6 +26,7 @@ export class DetailsComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private mainService: MainService,
+    private toastr: ToastrService,
   ) { 
     this.route.params.subscribe(routeParams => {
       this.orderid = routeParams.id;
@@ -110,6 +112,10 @@ export class DetailsComponent implements OnInit {
     console.log("Complete Service ==>",service);
     var data = {
       "id":orderid,
+      "order_id":this.orderid,
+      "service_id":service.service_id,
+      "vendor_id":this.userId,
+      "service_cost":service.total_cost,
       "user_status":service.user_status,
       "vendor_status":"2"
     }
@@ -119,6 +125,9 @@ export class DetailsComponent implements OnInit {
       res => {
        this.bookingDetails(this.orderid);
        //this.router.navigateByUrl('/mybooking');
+       this.toastr.success("Thanks for complete the order", '', {
+        timeOut: 3000,
+      });
       },
       error => {
         console.log(error.error);
