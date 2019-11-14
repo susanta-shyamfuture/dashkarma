@@ -103,19 +103,19 @@
                             <input type="text" placeholder="Search for a service" class="form-control" id="usr"
                                 name="searchtxt" formControlName="searchtxt"
                                 [ngClass]="{ 'is-invalid': submittedSearch && fs.searchtxt.errors }"
-                                (input)="onSearchChange($event.target.value)">
+                                (input)="onSearchChange($event.target.value)" (focus)="onSearchChange($event.target.value)" (blur)="hideSearchResults()">
+                                
                             <div *ngIf="submittedSearch && fs.searchtxt.errors" class="invalid-feedback">
                                 <div *ngIf="fs.searchtxt.errors.required">Search Keyword is required</div>
                             </div>
 
                             <div class="search-result" *ngIf="searchList.length>0">
                                 <ul>
-                                    <!-- <li *ngFor="let client of clients | async">  
-                        <a (click)="onselectClient(client)">{{client.ClientName}}</a>  
-                    </li> -->
-                                    <li *ngFor="let searchh of searchList; let i = index"
-                                        (click)="selectSearchService(searchh)">{{searchh.name}} </li>
-
+                                    <li *ngFor="let searchh of searchList; let i = index">
+                                        <a href="javascript:void(0)" (click)="selectSearchService(searchh)">
+                                            {{searchh.name}}
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -187,7 +187,8 @@
             <div class="row">
                 <div class="col-sm-8 col-xs-12">
                     <h3>Why Are We Most Trusted?</h3>
-                    <p>10Karma is committed to serving you in practising your spiritual beliefs. Thus, we serve with a difference, taking you closer to your spiritual goals.
+                    <p>10Karma is committed to serving you in practising your spiritual beliefs. Thus, we serve with a
+                        difference, taking you closer to your spiritual goals.
                     </p>
                     <div class=" clearfix"></div>
                     <div class="row">
@@ -195,7 +196,8 @@
                             <div class="availability">
                                 <div class="icon-img"><img src="assets/img/availability-icon.png" alt=""></div>
                                 <h3>No reminders required</h3>
-                                <p>Once booked, you are our top priority. You won’t need to call us repeatedly for your purpose
+                                <p>Once booked, you are our top priority. You won’t need to call us repeatedly for your
+                                    purpose
                                 </p>
                             </div>
                         </div>
@@ -203,7 +205,9 @@
                             <div class="availability">
                                 <div class="icon-img"><img src="assets/img/price-icon.png" alt=""></div>
                                 <h3>Certified, recognized and verified</h3>
-                                <p>The purohits and pandits registered here are certified, are recognized for their quality services. We also take the time to verify their identity before they get to serve you. 
+                                <p>The purohits and pandits registered here are certified, are recognized for their
+                                    quality services. We also take the time to verify their identity before they get to
+                                    serve you.
                                 </p>
                             </div>
                         </div>
@@ -220,7 +224,9 @@
                             <div class="availability">
                                 <div class="icon-img"><img src="assets/img/estimation-icon.png" title="" alt=""></div>
                                 <h3>Absolute contentment</h3>
-                                <p>It is a service with a difference because it serves your spiritual goals. So we make sure to suggest you purohits or pandits who takes care of the minor details; serves you for unmatched satisfaction and contentment. 
+                                <p>It is a service with a difference because it serves your spiritual goals. So we make
+                                    sure to suggest you purohits or pandits who takes care of the minor details; serves
+                                    you for unmatched satisfaction and contentment.
                                 </p>
                             </div>
                         </div>
@@ -255,8 +261,10 @@
                                         [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
                                     <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
                                         <div *ngIf="f.phone.errors.required">Mobile Number is required</div>
-                                        <div *ngIf="!f.phone.errors.pattern && f.phone.errors.minlength">Mobile Number must be at least 10 characters</div>
-                                        <div *ngIf="!f.phone.errors.pattern && f.phone.errors.maxlength">Mobile Number can not be more than 10 numeric characters</div>
+                                        <div *ngIf="!f.phone.errors.pattern && f.phone.errors.minlength">Mobile Number
+                                            must be at least 10 characters</div>
+                                        <div *ngIf="!f.phone.errors.pattern && f.phone.errors.maxlength">Mobile Number
+                                            can not be more than 10 numeric characters</div>
                                         <div *ngIf="f.phone.errors.pattern">Only numeric characters are allowed</div>
                                     </div>
                                 </div>
@@ -323,7 +331,8 @@
                             <div [innerHtml]="blog.description | slice:0:150"></div>
                         </div>
                         <!-- <a [routerLink]="['/blog/details', blog.id]" class="btn-card">Read More</a> -->
-                        <a [routerLink]="['/blog/details', blog.id]" class="blog-learnmore-btn btn btn-theme-red btn-block m-0">Read More</a>
+                        <a [routerLink]="['/blog/details', blog.id]"
+                            class="blog-learnmore-btn btn btn-theme-red btn-block m-0">Read More</a>
                     </div>
                 </div>
                 <!-- <div class="col-sm-4 col-xs-12">
@@ -369,11 +378,11 @@
     <div class="serve-peoplebg">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <h3>Counts that matter 
+                <!-- <div class="col-sm-12 col-xs-12">
+                    <h3>Counts that matter
                     </h3>
-                </div>
-                <div class="clearfix"></div>
+                </div> -->
+                <!-- <div class="clearfix"></div> -->
                 <div class="col-sm-3 col-xs-12">
                     <div class="project-icon"><img src="assets/img/project-icon1.png" alt=""></div>
                     <h2>971<br>
@@ -418,10 +427,11 @@
                         <div class="col-sm-4 col-xs-12 thumb" *ngFor="let recentWork of recentWorkList; let i = index">
                             <a class="thumbnail" href="javascript:void(0)" data-image-id="" data-toggle="modal"
                                 data-title="" data-image="img/gallery-img1.jpg" data-target="#image-gallery">
-                                <img class="img-thumbnail" [src]="imageBaseUrl+recentWork.image_large" alt="Another alt text">
+                                <img class="img-thumbnail" [src]="imageBaseUrl+recentWork.image_large"
+                                    alt="Another alt text">
                             </a>
                         </div>
-                        
+
                     </div>
                     <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog"
                         aria-labelledby="myModalLabel" aria-hidden="true">
@@ -557,8 +567,8 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
                     <h3>Our Media Partner</h3>
-                     <!--<p>Our gallery shows what are the services we provide recently.</p>
-                    <i class="fa fa-linode" aria-hidden="true"></i> -->
+                    <!-- <p>Our gallery shows what are the services we provide recently.</p> -->
+                    <!-- <i class="fa fa-linode" aria-hidden="true"></i> -->
                 </div>
             </div>
             <div class="container">

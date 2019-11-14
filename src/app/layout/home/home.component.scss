@@ -11,10 +11,29 @@
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
+    ul {
+        padding: 0;
+    }
 }
 
 .search-result li {
     list-style: none;
+    a {
+        padding: 5px 10px;
+        text-decoration: none;
+        color: #212529;
+        display: block;
+        border-bottom: 1px solid #ced4da;
+        transition: all ease 0.3s;
+        &:hover {
+            background: #ced4da;
+        }
+    }
+    &:last-child {
+        a {
+            border: none;
+        }
+    }
 }
 
 .offerbox {
@@ -55,9 +74,9 @@
 ul,
 dl {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     margin-left: 0px !important;
-    padding: 10px 0px 0px 12px;
+    padding: 10px;
 }
 
 .customer-logos.slider {

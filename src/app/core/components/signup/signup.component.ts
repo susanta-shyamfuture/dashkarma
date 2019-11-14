@@ -30,10 +30,19 @@ export class SignupComponent implements OnInit {
     this.signUpForm = this.formBuilder.group({
       user_type: ['2'],
       otp: ['', [Validators.required]],
-      name: ['', [Validators.required, Validators.pattern(/^[A-Za-z]*$/)]],
+      name: ['', [Validators.required, Validators.pattern(/^[ \A-Za-z]*$/)]],
       email: ['', [Validators.required, Validators.email]],
       contact: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^[0-9]*$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+    // this.signUpForm.reset();
+  }
+
+  resetForm() {
+    const inputValue = this.signUpForm.value.user_type;
+    this.signUpForm.reset();
+    this.signUpForm.patchValue({
+      user_type: inputValue
     });
   }
 

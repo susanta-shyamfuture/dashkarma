@@ -2,12 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MainService } from "../../../core/services/main.service";
-import { DetailsComponent } from "./details/details.component";
-import { CheckoutComponent } from "../checkout/checkout.component";
-import { CartComponent } from "../cart/cart.component";
-import { SigninComponent } from "../signin/signin.component";
-import { environment } from "../../../../environments/environment";
+import { MainService } from '../../../core/services/main.service';
+import { DetailsComponent } from './details/details.component';
+import { CheckoutComponent } from '../checkout/checkout.component';
+import { CartComponent } from '../cart/cart.component';
+import { SigninComponent } from '../signin/signin.component';
+import { environment } from '../../../../environments/environment';
 import * as moment from 'moment';
 @Component({
   selector: 'app-package',
@@ -24,11 +24,13 @@ export class PackageComponent implements OnInit {
   total_item_price: any;
   final_price: any;
   visitingCharge: any;
-  imageBaseUrl:any;
-  isVisible:boolean=false;
-  cartCount:any;
+  imageBaseUrl: any;
+  isVisible: boolean = false;
+  cartCount: any;
   selectedMoment: any;
   assingedDatetime: any;
+  today: any = new Date();
+  calendarMinDate: any = new Date(this.today.setDate(this.today.getDate() + 3));
   constructor(
     public dialog: MatDialog,
     private toastr: ToastrService,
@@ -40,12 +42,12 @@ export class PackageComponent implements OnInit {
       dialogRef.disableClose = true;
       mainService.getCartNumberStatus.subscribe(status => this.cartNumberStatus(status));
       if (localStorage.getItem('userId')) {
-      this.userId = localStorage.getItem('userId');
-    } else {
-      this.userId = '';
-    }
-    this.serviceDetails = data.service;
-    this.getPackageList(this.serviceDetails);
+        this.userId = localStorage.getItem('userId');
+      } else {
+        this.userId = '';
+      }
+      this.serviceDetails = data.service;
+      this.getPackageList(this.serviceDetails);
   }
 
   ngOnInit() {
@@ -57,36 +59,32 @@ export class PackageComponent implements OnInit {
     //   this.customer_cart_data = [];
     //   this.subTotal = 0;
     // }
-    if (localStorage.getItem("cart")) {
-      this.customer_cart_data = JSON.parse(localStorage.getItem("cart"));
+    if (localStorage.getItem('cart')) {
+      this.customer_cart_data = JSON.parse(localStorage.getItem('cart'));
       this.cartCount =  this.customer_cart_data.length;
       this.subTotal = parseFloat(localStorage.getItem('final_price'));
-    }
-    else {
+    } else {
       this.customer_cart_data = [];
-      this.cartCount =0;
+      this.cartCount = 0;
       this.subTotal = 0;
     }
   }
 
   cartNumberStatus(status: boolean) {
     if (status) {
-      if (localStorage.getItem("cart")) {
-        this.cartCount = JSON.parse(localStorage.getItem("cart")).length;
-      }
-      else {
+      if (localStorage.getItem('cart')) {
+        this.cartCount = JSON.parse(localStorage.getItem('cart')).length;
+      } else {
         this.cartCount = 0;
       }
-
-   
     }
   }
 
   getPackageList(service) {
-    var data = {
-      "service_cat_id": service.id,
-      "service_id": ''
-    }
+    const data = {
+      service_cat_id: service.id,
+      service_id: ''
+    };
     this.mainService.getPackageList(data).subscribe(
       res => {
         this.isVisible = true;
@@ -117,12 +115,12 @@ export class PackageComponent implements OnInit {
     this.dialog.closeAll();
   }
   setCartData() {
-    localStorage.setItem("cart", JSON.stringify(this.customer_cart_data));
+    localStorage.setItem('cart', JSON.stringify(this.customer_cart_data));
     this.getPackageList(this.serviceDetails);
     this.getTotalItemPrice();
   }
   addtoCart(item,dateValue) {
-  this.assingedDatetime = dateValue._selected ? moment(dateValue._selected).format('YYYY-MM-DD HH:m:s') : moment().format('YYYY-MM-DD HH:m:s');
+    this.assingedDatetime = dateValue._selected ? moment(dateValue._selected).format('YYYY-MM-DD HH:m:s') : moment().format('YYYY-MM-DD HH:m:s');
     if (localStorage.getItem('userId')) {
       var data = {
         service_id : item.id,

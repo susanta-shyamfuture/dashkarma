@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -14,7 +14,8 @@ import { environment } from '../../../environments/environment';
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss']
 })
-export class ServicesComponent implements OnInit {
+export class ServicesComponent implements OnInit, AfterViewInit {
+  @ViewChild('mapCanvas', { static: true }) mapElement: ElementRef;
   subServiceList: any = [];
   cmsDetails: any;
   parentCatDetails: any = {};
@@ -28,6 +29,29 @@ export class ServicesComponent implements OnInit {
   userId: any;
   addressList: any;
   defaultLocation: any;
+  markers = [
+    {
+      name: 'Monona Terrace Convention Center',
+      lat: 43.071584,
+      lng: -89.38012
+    },
+    {
+      name: 'Ionic HQ',
+      lat: 43.074395,
+      lng: -89.381056,
+      center: true
+    },
+    {
+      name: 'Afterparty - Brocach Irish Pub',
+      lat: 43.07336,
+      lng: -89.38335
+    },
+    {
+      name: 'Shyam Steel Industries Ltd',
+      lat: 22.573725,
+      lng: 88.431569,
+    }
+  ];
   constructor(
     public dialog: MatDialog,
     private mainService: MainService,
@@ -64,6 +88,24 @@ export class ServicesComponent implements OnInit {
 
     this.getCmsDetails('why-10-karma');
     // this.getCmsDetails('why-10-karma');
+  }
+  async ngAfterViewInit() {
+    const googleMaps = await getGoogleMaps(
+      'AIzaSyBozOMarWpi9n-gu7TkXZR3WH36Admg--Q'
+    );
+    const mapEle = this.mapElement.nativeElement;
+    const map = new googleMaps.Map(mapEle, {
+      center: this.markers.find((d: any) => d.center),
+      zoom: 12,
+    });
+    this.markers.forEach((markerData: any) => {
+
+      const marker = new googleMaps.Marker({
+        position: markerData,
+        map,
+        title: markerData.name
+      });
+    });
   }
 
 
@@ -229,4 +271,27 @@ export class ServicesComponent implements OnInit {
     )
   }
 
+}
+function getGoogleMaps(apiKey: string): Promise<any> {
+  const win = window as any;
+  const googleModule = win.google;
+  if (googleModule && googleModule.maps) {
+    return Promise.resolve(googleModule.maps);
+  }
+
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.31`;
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    script.onload = () => {
+      const googleModule2 = win.google;
+      if (googleModule2 && googleModule2.maps) {
+        resolve(googleModule2.maps);
+      } else {
+        reject('google maps not available');
+      }
+    };
+  });
 }

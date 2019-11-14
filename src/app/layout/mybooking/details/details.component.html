@@ -79,13 +79,13 @@
 
                             <div class="userbox d-flex flex-row flex-wrap">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-0">
-                                    <div class="expected-assigned-date d-block" *ngIf="order.assign_datetime">
+                                    <div class="expected-assigned-date d-block" *ngIf="order.assign_datetime && (order.assign_datetime != '0000-00-00 00:00:00')">
                                         <h4 class="float-none">
                                             <span>Expected Arrival time of professional </span>
                                         </h4>
                                         <p>{{order.assign_datetime | date: 'MMMM d, y , h:mm a'}}</p>
                                     </div>
-                                    <div class="rescheduled-date d-block" *ngIf="order.reschedule">
+                                    <div class="rescheduled-date d-block" *ngIf="order.reschedule && (order.reschedule != '0000-00-00 00:00:00')">
                                         <h4 class="float-none">
                                             <span>Rescheduled Date </span>
                                         </h4>
