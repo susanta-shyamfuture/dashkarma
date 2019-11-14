@@ -20,7 +20,7 @@
               <div class="col-sm-12 col-xs-12">
                 <div class="form-group">
                   <label for="contact">User Type:</label>
-                  <mat-radio-group aria-label="Select an option" formControlName="user_type">
+                  <mat-radio-group aria-label="Select an option" formControlName="user_type" #userTypeSelect (change)="resetForm()">
                     <mat-radio-button value="2">Customer</mat-radio-button>
                     <mat-radio-button value="3">Technician</mat-radio-button>
                     <div class="clearfix"></div>

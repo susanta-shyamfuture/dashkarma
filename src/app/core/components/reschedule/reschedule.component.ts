@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class RescheduleComponent implements OnInit {
   newdate:any;
   orderId:any;
+  today: any = new Date();
+  calendarMinDate: any = new Date(this.today.setDate(this.today.getDate() + 3));
   constructor(
     private mainService: MainService,
     private toastr: ToastrService,

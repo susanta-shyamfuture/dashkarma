@@ -45,7 +45,7 @@
           <button class="btn-card btn btn-theme-red" [owlDateTimeTrigger]="dt1">
             <i class="fa fa-calendar"></i>
           </button>
-          <input [owlDateTime]="dt1" [(ngModel)]="selectedMoment" placeholder="Date Time" class="hidden-element">
+          <input [owlDateTime]="dt1" [(ngModel)]="selectedMoment" [min]="calendarMinDate" placeholder="Date Time" class="hidden-element">
           <owl-date-time #dt1></owl-date-time>
           <button *ngIf="!package.isCart" type="button" class="btn-card btn btn-primary" data-toggle="modal"
             data-target="#myModal2" (click)="addtoCart(package, dt1)">

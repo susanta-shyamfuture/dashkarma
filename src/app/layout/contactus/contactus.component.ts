@@ -21,7 +21,7 @@ export class ContactusComponent implements OnInit {
 
   ngOnInit() {
     this.contactForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern(/^[ \A-Za-z]*$/)]],
       email: ['', [Validators.required,Validators.email]],
       phone: ['', [Validators.required]],
       subject: ['', [Validators.required]],

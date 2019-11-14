@@ -17,6 +17,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class HomeComponent implements OnInit {
   // @ViewChild('owlElement',{static: false}) owlElement: OwlCarousel
+  searchTimeout: any;
   requestForm: FormGroup;
   submitted = false;
   searchForm: FormGroup;
@@ -131,7 +132,7 @@ export class HomeComponent implements OnInit {
     this.imageBaseUrl = environment.imageEndpoint;
 
     this.requestForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern(/^[A-Za-z]*$/)]],
+      name: ['', [Validators.required, Validators.pattern(/^[ \A-Za-z]*$/)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^[0-9]*$/)]],
       subject: ['', [Validators.required]],
@@ -303,20 +304,27 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchChange(searchKey) {
-   // if(searchKey.length>2) {
-      this.mainService.searchServices(searchKey).subscribe(
-        res => {
-          this.searchList = res['result'];
-        },
-        error => {
-          console.log(error.error);
-          // this.toastr.error('Error!!!', '', {
-          //   timeOut: 3000,
-          // });
-        }
-      )
-  //  }
-    
+    clearTimeout(this.searchTimeout);
+    if (searchKey.length) {
+      this.searchTimeout = setTimeout(() => {
+        this.mainService.searchServices(searchKey).subscribe(
+          res => {
+            this.searchList = res['result'];
+          },
+          error => {
+            console.log(error.error);
+            // this.toastr.error('Error!!!', '', {
+            //   timeOut: 3000,
+            // });
+          }
+        );
+      }, 500);
+    } else {
+      this.searchList = [];
+    }
+  }
+  hideSearchResults() {
+    this.searchList = [];
   }
 
   getLocation(locid) {

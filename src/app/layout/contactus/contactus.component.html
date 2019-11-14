@@ -40,6 +40,7 @@
                   [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
                 <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                   <div *ngIf="f.name.errors.required">Name is required</div>
+                  <div *ngIf="f.name.errors.pattern">Only Alphabets are allowed.</div>
                 </div>
               </div>
               <div class="col-lg-6"><label for="exampleInputEmail1">Email</label>
