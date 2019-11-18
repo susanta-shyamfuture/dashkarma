@@ -183,8 +183,14 @@
                   <p>Previous Bookings</p>
                 </div>
                 <div class="servicesSectionInnerRightInner2Row">
-                  <h4>{{catRating.ava_rat | slice:0:3}} / {{catRating.outof}}</h4>
-                  <p>based on {{catRating.outof}} reviews</p>
+                  <!-- <h4>{{catRating.ava_rat | slice:0:3}} / {{catRating.outof}}</h4> -->
+                  <h4>
+                    {{
+                      catRating.ava_rat ?
+                      (catRating.ava_rat | slice:0:3) : '5'
+                    }} / {{catRating.outof}}
+                  </h4>
+                  <p *ngIf="catRating.total_review != '0'">based on {{catRating.total_review}} reviews</p>
                 </div>
               </div>
             </div>

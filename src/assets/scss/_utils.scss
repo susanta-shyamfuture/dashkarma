@@ -2123,13 +2123,17 @@ footer.page-footer .search-container button:hover {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
     z-index: 999;
     border-radius: 6px 6px 0px 0px;
+    max-height: calc(95vh - 118px);
+    overflow-y: auto;
 }
 
 .servicesSectionInnerRightInner2 {
     background: #f9f0f0;
-    height: 120px;
+    /* height: 120px; */
     padding: 0px 20px;
     margin: 25px 0px 0px 0px;
+    float: left;
+    width: 100%;
 }
 
 .servicesSectionInnerRightInner2Row {
