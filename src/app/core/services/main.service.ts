@@ -155,6 +155,15 @@ export class MainService {
     return this.http.post(environment.apiEndpoint + 'getuserwalletdetails/', data, {headers: this.headers});
   }
 
+  getLocation() {
+    return this.http.get(environment.apiEndpoint + 'locationlist/', { headers: this.headers });
+  }
+
+  getPdfFile() {
+    return this.http.get(environment.apiEndpoint + 'getpdflist/', { headers: this.headers });
+  }
+
+
  
 
  

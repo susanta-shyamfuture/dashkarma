@@ -24,6 +24,7 @@ const routes: Routes = [
       { path: 'test', loadChildren: './test/test.module#TestModule' },
       { path: 'serviceaddress', loadChildren: './serviceaddress/serviceaddress.module#ServiceaddressModule' },
       { path: 'vreviews', loadChildren: './vreviews/vreviews.module#VreviewsModule' },
+      { path: 'calender', loadChildren: './calender/calender.module#CalenderModule' },
       ]
   }
 ];

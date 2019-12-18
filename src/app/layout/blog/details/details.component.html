@@ -4,8 +4,6 @@
 <section class="innerbody">
   <div class="container">
     <div class="row">
-      <!---------------------------------------------------------blog-Detalis--------------------------------------------------------------------------------------->
-
       <!-- Start Blog Details Area -->
       <section class="blog-details-area ptb-120 col-xl-12 col-12 p-0">
         <div class="container">
@@ -19,58 +17,12 @@
                   <h3 class="my-3 text-capitalize">{{ blogData.title }}</h3>
                   <div class="entry-meta">
                     <ul>
-                      <!-- <li class="mr-2">
-                                    <i class="fa fa-user-circle"></i>
-                                    By: <a href="javascript:void(0)">Admin</a>
-                                 </li> -->
                       <li class="mr-2">
-                        Posted on: {{ blogData.date_created | date}} at {{ blogData.date_created | date:'shortTime'}}
+                        Event on: {{ blogData.event_date | date}}
                       </li>
-                      <!-- <li class="mr-2"><a href="javascript:void(0)">Tech</a></li>
-                                 <li class="mr-2">2 Mins Read</li>
-                                 <li class="mr-2">521 Views</li>
-                                 <li class="mr-2"><a href="javascript:void(0)">3 Comments</a></li> -->
                     </ul>
                   </div>
                   <div class="blog-description" [innerHTML]="blogData.description"></div>
-
-                  <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.</p>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                           <blockquote class="wp-block-quote">
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                              <cite>Tom Cruise</cite>
-                           </blockquote>
-                           <p>Equidem impedit officiis quo te. Illud partem sententiae mel eu, euripidis urbanitas et sit. Mediocrem reprimique an vim, veniam tibique omittantur duo ut, agam graeci in vim. Quot appetere patrioque te mea, animal aliquip te pri. Ad vis animal ceteros percipitur, eos tollit civibus percipitur no.</p> -->
-                  <!-- <ul class="wp-block-gallery columns-3">
-                              <li class="blocks-gallery-item">
-                                 <figure>
-                                    <img src="assets/img/yoga-1.jpeg" alt="image">
-                                 </figure>
-                              </li>
-                              <li class="blocks-gallery-item">
-                                 <figure>
-                                    <img src="assets/img/yoga-2.jpg" alt="image">
-                                 </figure>
-                              </li>
-                              <li class="blocks-gallery-item">
-                                 <figure>
-                                    <img src="assets/img/yoga-3.jpg" alt="image">
-                                 </figure>
-                              </li>
-                           </ul> -->
-                  <!-- <h3>10 Tactics for marketing your company</h3>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.</p>
-                           <ul class="article-features-list">
-                              <li>Devices can grind down to a halt.</li>
-                              <li>Small companies Reairing business.</li>
-                              <li>Repairs are competitive with anyone</li>
-                              <li>Repair broken buttons, speakers</li>
-                              <li>Repairs are competitive with anyone</li>
-                           </ul>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.</p>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p> -->
                 </div>
                 <div class="blog-details" *ngIf="+blogData.is_deleted">
                   <p>This Post Has been Deleted.</p>
@@ -85,26 +37,20 @@
             </div>
             <div class="col-lg-4 col-md-12">
               <aside class="widget-area p-0" id="secondary">
-                <!-- <section class="widget widget_search">
-                  <form class="search-form">
-                    <label>
-                      <span class="screen-reader-text">Search for:</span>
-                      <input type="search" class="search-field" placeholder="Search...">
-                    </label>
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                  </form>
-                </section> -->
+
                 <section class="widget widget_labto_posts_thumb">
                   <h3 class="widget-title">All Posts</h3>
                   <article class="popular-blogs-container"
                     *ngIf="removeCurrent(blogList).length;else noRecentPostsFound">
-                    <article class="item" *ngFor="let blog of removeCurrent(blogList) | slice:0:4; trackBy:trackByBlogId">
+                    <article class="item"
+                      *ngFor="let blog of removeCurrent(blogList) | slice:0:4; trackBy:trackByBlogId">
                       <a [routerLink]="['/blog/details', blog.id]" class="thumb d-inline-block">
                         <img *ngIf="blog.image_small" [src]="imageBaseUrl + blog.image_small">
                       </a>
                       <div class="info">
-                        <time [attr.datetime]="blog.date_created">
-                          {{ blog.date_created | date }}
+
+                        <time [attr.datetime]="blog.event_date">
+                          {{ blog.event_date | date }}
                         </time>
                         <h4 class="title usmall">
                           <a [routerLink]="['/blog/details', blog.id]">
@@ -119,27 +65,12 @@
                     <p>No Recent Posts Found</p>
                   </ng-template>
                 </section>
-                <!-- <section class="widget widget_recent_entries">
-                  <h3 class="widget-title">Recent Posts</h3>
-                  <ul *ngIf="removeCurrent(blogList).length;else noRecentPostsFound">
-                    <li *ngFor="let blog of removeCurrent(blogList) | slice:0:4; trackBy:trackByBlogId">
-                      <a [routerLink]="['/blog/details', blog.id]">
-                        {{ blog.title }}
-                      </a>
-                    </li>
-                  </ul>
-                  <ng-template #noRecentPostsFound>
-                    <p>No Recent Posts Found</p>
-                  </ng-template>
-
-                </section> -->
               </aside>
             </div>
           </div>
         </div>
       </section>
       <!-- End Blog Details Area -->
-      <!---------------------------------------------------------blog--------------------------------------------------------------------------------------->
     </div>
   </div>
 </section>

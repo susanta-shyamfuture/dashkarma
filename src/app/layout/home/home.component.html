@@ -1,15 +1,6 @@
 <div *ngIf="visibleKey">
-
-
     <!--Carousel Wrapper-->
     <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
-        <!--Indicators-->
-        <!-- <ol class="carousel-indicators">
-    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-2" data-slide-to="1"></li>
-    <li data-target="#carousel-example-2" data-slide-to="2"></li>
-  </ol> -->
-        <!--/.Indicators-->
         <!--Slides-->
         <div class="carousel-inner home-banner" role="listbox">
 
@@ -22,69 +13,16 @@
                         </div>
                     </div>
                 </ng-template>
-                <!-- <ng-template carouselSlide>
-              <div class="carousel-item active">
-                  <div class="view">
-                    <img class="d-block w-100" src="assets/img/slide-banner2.jpg" alt="First slide">
-                    <div class="mask rgba-black-light"></div>
-                  </div>
-                </div>
-          </ng-template>
-          <ng-template carouselSlide>
-              <div class="carousel-item active">
-                  <div class="view">
-                    <img class="d-block w-100" src="assets/img/slide-banner3.jpg" alt="First slide">
-                    <div class="mask rgba-black-light"></div>
-                  </div>
-                </div>
-          </ng-template> -->
             </owl-carousel-o>
 
 
         </div>
-        <!--/.Slides-->
-        <!--Controls-->
-        <!-- <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-    <span class="" aria-hidden="true"><img class="d-block w-100" src="assets/img/angle-left.png" alt=""></span>
-    <span class="sr-only">Previous</span>
-  </a> -->
-        <!-- <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-    <span class="" aria-hidden="true"><img class="d-block w-100" src="assets/img/angle-right.png" alt=""></span>
-    <span class="sr-only">Next</span>
-  </a> -->
-        <!--/.Controls-->
         <div class="carousel-caption">
-            <h3 class="h3-responsive">Serving your beliefs since 2008<br><span>Our goal is to keep people thought-free, hassle-free & comfortable at their home everyday</span></h3>
 
-            <!-- <p>Know what your customer needs</p> -->
+            <h3 class="h3-responsive">{{settingList.banner_header}}<br><span>{{settingList.banner_text}}</span></h3>
         </div>
-        <div class="search-sec">
+        <div class="search-sec" *ngIf="userType !=3">
             <div class="container">
-                <!-- <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
-        <div class="row">
-          <div class="col-sm-3 col-xs-12">
-            <select class="form-control search-slt" id="exampleFormControlSelect1" name="citylist" formControlName="citylist">
-             
-              <option *ngFor="let city of citylist; let i = index" [value]="citylist[i].id" >
-                {{citylist[i].name}}
-              </option>
-            </select>
-          </div>
-          <div class="col-sm-6 col-xs-12">
-            <input type="text" placeholder="Search for a service" class="form-control"
-              id="usr" name="searchtxt" formControlName="searchtxt" [ngClass]="{ 'is-invalid': submittedSearch && fs.searchtxt.errors }" (keyup)="searchClient(searchtxt)">
-              <div *ngIf="submittedSearch && fs.searchtxt.errors" class="invalid-feedback">
-                <div *ngIf="fs.searchtxt.errors.required">Search Keyword is required</div>
-              </div>
-              
-          </div>
-          <div class="col-sm-3 col-xs-12">
-            <button type="submit" class="btn"><i class="fa fa-search"
-                aria-hidden="true"></i> Search</button></div>
-
-        
-        </div>
-      </form> -->
                 <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
                     <div class="row">
                         <div class="col-sm-3 col-xs-12">
@@ -96,8 +34,6 @@
                                     {{citylist[i].name}}
                                 </option>
                             </select>
-
-
                         </div>
                         <div class="col-sm-6 col-xs-12">
                             <input type="text" placeholder="Search for a service" class="form-control" id="usr"
@@ -109,7 +45,7 @@
                                 <div *ngIf="fs.searchtxt.errors.required">Search Keyword is required</div>
                             </div>
 
-                            <div class="search-result" *ngIf="searchList.length>0">
+                            <div class="search-result" *ngIf="(searchList.length > 0) && showSearch">
                                 <ul>
                                     <li *ngFor="let searchh of searchList; let i = index">
                                         <a href="javascript:void(0)" (click)="selectSearchService(searchh)">
@@ -123,8 +59,6 @@
                         <div class="col-sm-3 col-xs-12">
                             <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i>
                                 Search</button></div>
-
-
                     </div>
                 </form>
 
@@ -149,34 +83,6 @@
 
                     </div>
                 </div>
-
-
-                <!-- <div class="col-sm-4 col-xs-12">
-        <div class="offerbox">
-          <div class="image-icon"><img src="assets/img/yoga-icon.png" alt="Yoga"></div>
-          <h2>Yoga</h2>
-          <div class="overlay">
-            <div class="text">Yoga</div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nibh libero, consequat eget lobortis
-              eu,
-            </p>
-            <a (click)="gotoServicePage()" class="btn">Learn More</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-xs-12">
-        <div class="offerbox">
-          <div class="image-icon"><img src="assets/img/meditation-icon.png" alt="Meditation"></div>
-          <h2>Meditation</h2>
-          <div class="overlay">
-            <div class="text">Meditation</div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nibh libero, consequat eget lobortis
-              eu,
-            </p>
-            <a (click)="gotoServicePage()" class="btn">Learn More</a>
-          </div>
-        </div>
-      </div> -->
             </div>
         </div>
     </div>
@@ -215,8 +121,7 @@
                             <div class="availability">
                                 <div class="icon-img"><img src="assets/img/process-icon.png" alt=""></div>
                                 <h3>24x7 available booking facilities</h3>
-                                <p>Utilized for measuring flow, temperature level and pressure in the electrical
-                                    manufacturing industry.
+                                <p>We offer you the most flexible way to book a purohit for your puja or relevant purpose. The booking facility is open round the clock.
                                 </p>
                             </div>
                         </div>
@@ -316,7 +221,7 @@
                             <a [routerLink]="['/blog/details', blog.id]" class="d-block h-100">
                                 <img [src]="imageBaseUrl+blog.image_large" alt="image">
                                 <span>
-                                    <h4>{{blog.date_created | date: 'MMMM d, y'}} </h4>
+                                    <h4>{{blog.event_date | date: 'MMMM d, y'}} </h4>
                                 </span>
                             </a>
                         </div>
@@ -335,40 +240,7 @@
                             class="blog-learnmore-btn btn btn-theme-red btn-block m-0">Read More</a>
                     </div>
                 </div>
-                <!-- <div class="col-sm-4 col-xs-12">
-                    <div class="card-content">
-                        <div class="card-img">
-                            <img src="assets/img/news3.jpg" alt="">
-                            <span>
-                                <h4>02 August 2019 </h4>
-                            </span>
-                        </div>
-                        <div class="card-desc">
-                            <h3>Lorem ipsum dolor</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor
-                                quo, perspiciatis voluptas totam
-                            </p>
-                            <a href="javascript:void(0)" class="btn-card">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <div class="card-content">
-                        <div class="card-img">
-                            <img src="assets/img/news2.jpg" alt="">
-                            <span>
-                                <h4>02 August 2019 </h4>
-                            </span>
-                        </div>
-                        <div class="card-desc">
-                            <h3>Lorem ipsum dolor</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor
-                                quo, perspiciatis voluptas totam
-                            </p>
-                            <a href="javascript:void(0)" class="btn-card">Read More</a>
-                        </div>
-                    </div>
-                </div> -->
+              
             </div>
         </div>
     </div>
@@ -378,11 +250,6 @@
     <div class="serve-peoplebg">
         <div class="container">
             <div class="row">
-                <!-- <div class="col-sm-12 col-xs-12">
-                    <h3>Counts that matter
-                    </h3>
-                </div> -->
-                <!-- <div class="clearfix"></div> -->
                 <div class="col-sm-3 col-xs-12">
                     <div class="project-icon"><img src="assets/img/project-icon1.png" alt=""></div>
                     <h2>971<br>
@@ -424,14 +291,16 @@
                 <div class="container-fluid gallery">
                     <div class="row">
                         <div class="" style="height: 25px; float: left; width: 100%;"></div>
-                        <div class="col-sm-4 col-xs-12 thumb" *ngFor="let recentWork of recentWorkList; let i = index">
-                            <a class="thumbnail" href="javascript:void(0)" data-image-id="" data-toggle="modal"
-                                data-title="" data-image="img/gallery-img1.jpg" data-target="#image-gallery">
-                                <img class="img-thumbnail" [src]="imageBaseUrl+recentWork.image_large"
-                                    alt="Another alt text">
-                            </a>
+                      
+                        <div class="col-sm-12 col-xs-12 thumb" >
+                         
+                             <owl-carousel-o [options]="recentActivitiesOptions">
+                            <ng-template carouselSlide *ngFor="let recentWork of recentWorkList; let i = index">
+                              <img [src]="imageBaseUrl+recentWork.image_large">
+                            </ng-template>
+                        </owl-carousel-o>
+                
                         </div>
-
                     </div>
                     <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog"
                         aria-labelledby="myModalLabel" aria-hidden="true">
@@ -466,7 +335,7 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
                     <h3>Testimonials</h3>
-                    <p>Our Patient Feedback</p>
+                    <!-- <p>Our Patient Feedback</p> -->
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-sm-12 col-xs-12">
@@ -476,9 +345,7 @@
                                 <ng-template carouselSlide *ngFor="let testimonial of testimonialList; let i = index">
                                     <div class="carousel-item text-center active">
                                         <div class="img-box p-1 border rounded-circle m-auto">
-                                            <!-- <img class="d-block w-100 rounded-circle" src="http://nicesnippets.com/demo/profile-3.jpg"
-                      alt="First slide"> -->
-
+                                        
                                             <img class="d-block w-100" [src]="imageBaseUrl+testimonial.author_image"
                                                 alt="First slide">
                                         </div>
@@ -490,67 +357,7 @@
                                         <h6 class="text-dark m-0">{{testimonial.author_designation}}</h6>
                                     </div>
                                 </ng-template>
-                                <!-- <ng-template carouselSlide>
-                <div class="carousel-item text-center active">
-                  <div class="img-box p-1 border rounded-circle m-auto">
-                    <img class="d-block w-100 rounded-circle" src="http://nicesnippets.com/demo/profile-3.jpg"
-                      alt="First slide">
-                  </div>
-                  <h4 class="m-0 pt-3 text-white">Kalyan AcharyaLorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nam eu sem
-                    tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada
-                    ante.
-                    Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.
-                  </h4>
-                  <h5 class=""><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
-                  <h6 class="text-dark m-0">Web Designer</h6>
-                </div>
-              </ng-template>
-              <ng-template carouselSlide>
-                  <div class="carousel-item text-center active">
-                  <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                      <div class="panel panel-default">
-                        <div class="panel-body">
-                          <div class="embed-responsive embed-responsive-16by9">
-                            <iframe width="560" height="" src="https://www.youtube.com/embed/26bN6AUIfNA"
-                              frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-                          </div>
-                        </div>
-                        <div class="panel-footer">
-                          <div class="panel-footer-txt">
-                            <h5>John Doe</h5>
-                            <div class="testi-right">
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star checked"></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                   
-                  </div>
-                </div>
-              
-              </ng-template>
-              <ng-template carouselSlide>
-                <div class="carousel-item text-center active">
-                  <div class="img-box p-1 border rounded-circle m-auto">
-                    <img class="d-block w-100 rounded-circle" src="http://nicesnippets.com/demo/profile-7.jpg"
-                      alt="First slide">
-                  </div>
-                  <h4 class="m-0 pt-3 text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem
-                    tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada
-                    ante.
-                    Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.
-                  </h4>
-                  <h5 class=""><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
-                  <h6 class="text-dark m-0">Seo Analyst</h6>
-                </div>
-              </ng-template> -->
+                               
                             </owl-carousel-o>
                         </div>
                         <div class="carousel-inner mt-4">
@@ -566,9 +373,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <h3>Our Media Partner</h3>
-                    <!-- <p>Our gallery shows what are the services we provide recently.</p> -->
-                    <!-- <i class="fa fa-linode" aria-hidden="true"></i> -->
+                    <h3> Media & Accreditation</h3>
                 </div>
             </div>
             <div class="container">

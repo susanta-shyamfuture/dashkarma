@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { AboutusRoutingModule } from './aboutus-routing.module';
 import { AboutusComponent } from './aboutus.component';
-
+// core
+import { CoreModule } from '../../core/core.module';
 
 @NgModule({
   declarations: [AboutusComponent],
   imports: [
     CommonModule,
-    AboutusRoutingModule
+    AboutusRoutingModule,
+    CoreModule
   ]
 })
 export class AboutusModule { }

@@ -59,19 +59,34 @@ export class DetailsComponent implements OnInit {
   }
 
   cancelOrder(orderDetails) {
-    var data = {
-      "order_id":orderDetails.id,
-      "cancel_request":"Personal reason"
-    }
-    this.mainService.cancelorder(data).subscribe(
-      res => {
-       this.bookingDetails(this.orderid);
-       this.router.navigateByUrl('/mybooking');
-      },
-      error => {
-        console.log(error.error);
-      }
-    )
+  // var reason =   prompt("Reason for cancel order");
+  // console.log(reason)
+  // if(reason) {
+  //   var data = {
+  //     "order_id":orderDetails.id,
+  //     "cancel_request":reason
+  //   }
+  //   this.mainService.cancelorder(data).subscribe(
+  //     res => {
+  //      this.bookingDetails(this.orderid);
+  //      this.router.navigateByUrl('/mybooking');
+  //     },
+  //     error => {
+  //       console.log(error.error);
+  //     }
+  //   )
+  // }
+  // else {
+   
+  //   this.toastr.warning("Please provide a reason to cancel order", '', {
+  //     timeOut: 3000,
+  //   });
+  // }
+
+    this.toastr.warning("We regret to inform you that your request to avail this service couldn't be accepted now. Please call us to know the reason for this cancellation.", '', {
+      timeOut: 5000,
+    });
+   
   }
 
   gotoRating(orderid,service) {
@@ -123,7 +138,7 @@ export class DetailsComponent implements OnInit {
       res => {
        this.bookingDetails(this.orderid);
        //this.router.navigateByUrl('/mybooking');
-       this.toastr.success("Thanks for complete the order", '', {
+       this.toastr.success("Thanks, You have been succesfully completed this service.", '', {
         timeOut: 3000,
       });
       },

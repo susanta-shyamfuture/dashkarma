@@ -120,7 +120,7 @@ export class PackageComponent implements OnInit {
     this.getTotalItemPrice();
   }
   addtoCart(item,dateValue) {
-    this.assingedDatetime = dateValue._selected ? moment(dateValue._selected).format('YYYY-MM-DD HH:m:s') : moment().format('YYYY-MM-DD HH:m:s');
+    this.assingedDatetime = dateValue._selected ? moment(dateValue._selected).format('YYYY-MM-DD HH:m:s') : moment().add(3, 'd').format('YYYY-MM-DD HH:m:s');
     if (localStorage.getItem('userId')) {
       var data = {
         service_id : item.id,

@@ -71,6 +71,8 @@ export class DetailsComponent implements OnInit {
   }
 
   removeCurrent(blogList) {
+    //console.log("cc==>",blogList);
+    
     return blogList.filter(item => ((item.id !== this.blogid) && (+item.is_active)));
   }
 

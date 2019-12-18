@@ -3,7 +3,7 @@
     <div class="container">
         <a class="navbar-brand" [routerLink]="'/home'" *ngIf="settingList.logo_image">
             <!-- <img src="assets/img/logo.png" alt="" title="10 karma"> -->
-            <img [src]="imageBaseUrl+settingList.logo_image" alt="" title="10 karma">
+            <img [src]="imageBaseUrl+settingList.logo_image" class="header-logo" alt="" title="10 karma">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
             aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation"
@@ -24,25 +24,12 @@ true}">
 true}">
                     <a class="nav-link" [routerLink]="'/cms/details/about-us'">About Us</a>
                 </li>
-                <!-- <li class="nav-item dropdown" (mouseover)="openMenu()" (mouseout)="closeMenu($event)">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [matMenuTriggerFor]="menu">Services
-                    </a>
-                    <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                        <mat-menu #menu="matMenu" hasBackdrop="false">
-                            <a *ngFor="let category of catList; let i = index" class="dropdown-item" (click)="gotoServicePage(category.id)">{{category.name}}</a>
-                        </mat-menu>
-                    </div>
-                </li> -->
-                <!-- 
-                    (click)="servicesDropdown.open()" (mouseover)="servicesDropdown.open()"
-                    (mouseout)="servicesDropdown.close()" -->
-                <li class="nav-item dropdown" ngbDropdown #servicesDropdown="ngbDropdown" [routerLinkActive]="['active']" (click)="servicesDropdown.open()" (mouseover)="servicesDropdown.open()"
+                <li *ngIf="userType !=3" class="nav-item dropdown" ngbDropdown #servicesDropdown="ngbDropdown" [routerLinkActive]="['active']" (click)="servicesDropdown.open()" (mouseover)="servicesDropdown.open()"
                 (mouseout)="servicesDropdown.close()">
                     <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="servicesDropdown" role="button">
                         Services
                     </a>
                     <div ngbDropdownMenu aria-labelledby="servicesDropdown">
-                        <!-- <a *ngFor="let category of catList; let i = index" class="dropdown-item" (click)="gotoServicePage(category.id)">{{category.name}}</a> -->
                         <a *ngFor="let category of catList; let i = index" class="dropdown-item" [routerLink]="['/services', category.id]" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
                             {{category.name}}
                         </a>
@@ -57,22 +44,7 @@ true}">
                     <a class="nav-link" [routerLink]="'/contactus'">Contact Us</a>
                 </li>
             </ul>
-
-
-
-            <!-- <div class="cart" (click)="gotoCart()">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span>{{cartCount}}</span>
-            </div> -->
-
-
             <ul class="nav ml-auto nav-flex-icons" *ngIf="!loggedIn">
-                <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link nav-cart-link" (click)="gotoCart()">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        <span> {{cartCount}}</span>
-                    </a>
-                </li>
                 <li class="nav-item" (click)="openSigninModal()">
                     <a class="nav-link waves-effect waves-light" id="myBtn">
                         <i class="fa fa-user" aria-hidden="true"></i> Sign In
@@ -83,9 +55,6 @@ true}">
                         <i class="fa fa-key" aria-hidden="true"></i> Sign Up
                     </a>
                 </li>
-
-
-
                 <li class="nav-item dropdown" style="display: none;">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -101,32 +70,12 @@ true}">
             </ul>
 
             <ul class="nav ml-auto nav-flex-icons" *ngIf="loggedIn">
-                <!-- <li class="nav-item">  
-                <i class="fa fa-user" aria-hidden="true"></i> Kalyan Acharya
-            </li> -->
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="userType !=3">
                     <a href="javascript:void(0)" class="nav-link nav-cart-link" (click)="gotoCart()">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         <span> {{cartCount}}</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item dropdown">
-                    <a class=" dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" [matMenuTriggerFor]="menu">{{userName}}
-                    </a>
-                    <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                        <mat-menu #menu="matMenu" hasBackdrop="false">
-                            <a *ngFor="let service of serviceList; let i = index" class="dropdown-item" (click)="gotoServicePage(service.id)">{{service.name}}</a>
-                            <a class="dropdown-item" [routerLink]="'/profile'">My Account</a>
-                            <a *ngIf="userType==2" class="dropdown-item" [routerLink]="'/mybooking'">My Booking</a>
-                            <a *ngIf="userType==3" class="dropdown-item" [routerLink]="'/myappointment'">My
-                                Appointment</a>
-                            <a class="dropdown-item" (click)="logOut()">Logout</a>
-                        </mat-menu>
-
-                    </div>
-                </li> -->
-
                 <li class="nav-item dropdown" ngbDropdown display="dynamic" placement="bottom-right"
                     #profileDrop="ngbDropdown">
                     <a class="nav-link" style="cursor: pointer; text-transform: capitalize" ngbDropdownToggle
@@ -141,16 +90,7 @@ true}">
                         <a class="dropdown-item" (click)="logOut()">Logout</a>
                     </div>
                 </li>
-
-                <!-- <li (click)="logOut()">
-               
-                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-               
-            </li> -->
-
             </ul>
-
-
         </div>
     </div>
 </nav>

@@ -17,7 +17,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class HomeComponent implements OnInit {
   // @ViewChild('owlElement',{static: false}) owlElement: OwlCarousel
+  userType:any;
   searchTimeout: any;
+  showSearch: boolean = false;
   requestForm: FormGroup;
   submitted = false;
   searchForm: FormGroup;
@@ -31,7 +33,35 @@ export class HomeComponent implements OnInit {
   locId:any;
   blogList:any=[];
   recentWorkList:any=[];
+  recentActivitiesOptions: OwlOptions = {
+    loop: true,
+    autoplay: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    margin:20,
+
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 3
+      }
+    },
+    nav: false
+  }
   partnerOptions: OwlOptions = {
+    
     loop: true,
     autoplay: true,
     mouseDrag: false,
@@ -43,16 +73,16 @@ export class HomeComponent implements OnInit {
 
     responsive: {
       0: {
-        items: 3
+        items: 4
       },
       400: {
-        items: 3
+        items: 4
       },
       740: {
-        items: 5
+        items: 4
       },
       940: {
-        items: 5
+        items: 4
       }
     },
     nav: true
@@ -83,7 +113,7 @@ export class HomeComponent implements OnInit {
     },
     nav: true
   }
-
+  settingList:any={};
 
   testimonialOptions: OwlOptions = {
     loop: true,
@@ -130,7 +160,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.imageBaseUrl = environment.imageEndpoint;
-
+    this.userType = localStorage.getItem('userType');
     this.requestForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(/^[ \A-Za-z]*$/)]],
       email: ['', [Validators.required, Validators.email]],
@@ -167,6 +197,7 @@ export class HomeComponent implements OnInit {
     //   this.getBannerList();
     // this.getServicesList();
     this.getAllData();
+    this.getSettings();
 
   }
 
@@ -231,7 +262,10 @@ export class HomeComponent implements OnInit {
   }
 
   gotoServicePage(id) {
-    this.router.navigateByUrl('/services/' + id);
+    if(localStorage.getItem('userType') !='3') {
+      this.router.navigateByUrl('/services/' + id);
+    }
+   
   }
 
   get f() {
@@ -309,6 +343,7 @@ export class HomeComponent implements OnInit {
       this.searchTimeout = setTimeout(() => {
         this.mainService.searchServices(searchKey).subscribe(
           res => {
+            this.showSearch = true;
             this.searchList = res['result'];
           },
           error => {
@@ -318,13 +353,15 @@ export class HomeComponent implements OnInit {
             // });
           }
         );
-      }, 500);
+      }, 200);
     } else {
+      this.showSearch = false;
       this.searchList = [];
     }
   }
   hideSearchResults() {
-    this.searchList = [];
+    // this.showSearch = false;
+    // this.searchList = [];
   }
 
   getLocation(locid) {
@@ -334,11 +371,24 @@ export class HomeComponent implements OnInit {
   selectSearchService(key) {
     this.selectedService = key.id;
     this.searchForm.value.searchtxt = key.name;
-
+    console.log(key.name);
+    
     //this.searchForm.setValue({ citylist:2  , searchtxt: 'Drew'});
     this.searchForm.patchValue({
       searchtxt: key.name
-    })
+    });
+    this.showSearch = false;
+  }
+
+  getSettings() {
+    this.mainService.getSettings().subscribe(
+      res => {
+       this.settingList = res['result'][0];
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   // getSearchResult() {

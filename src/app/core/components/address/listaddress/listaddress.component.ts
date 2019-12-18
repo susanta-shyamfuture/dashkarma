@@ -64,9 +64,6 @@ export class ListaddressComponent implements OnInit {
       },
       error => {
         console.log(error.error);
-        // this.toastr.error('Error!!!', '', {
-        //   timeOut: 3000,
-        // });
       }
     )
   }
@@ -91,15 +88,9 @@ export class ListaddressComponent implements OnInit {
      this.userService.defaultAddress(data).subscribe(
        res => {
           this.getAddressList(this.userId);
-        //  this.toastr.success('Addreess Deleted Succesfully', '', {
-        //         timeOut: 3000,
-        //  });
        },
        error => {
          console.log(error.error);
-         // this.toastr.error('Error!!!', '', {
-         //   timeOut: 3000,
-         // });
        }
      )
 

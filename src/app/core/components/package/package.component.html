@@ -25,20 +25,12 @@
           <mat-expansion-panel-header>
             View Description
           </mat-expansion-panel-header>
-        
+        <div class="custom-service-details">
           <div [innerHtml]="package.description"></div>
+        </div>
+          
         </mat-expansion-panel>
-        <!-- <ul>
-          <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Lorem Ipsum is
-            simply dummy text of the printing and typesetting industry.
-          </li>
-          <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>the printing and
-            typesetting industry.
-          </li>
-          <li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Lorem Ipsum is
-            simply dummy text of the printing
-          </li>
-        </ul> -->
+        
         <div class="row">
           <h3 *ngIf="package.type==1"> {{package.service_charge}}</h3>
           <h3 *ngIf="package.type==2">On Inspection</h3>

@@ -9,11 +9,13 @@ import { ListComponent } from '../services/list/list.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environments/environment';
+declare var google; 
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss']
 })
+
 export class ServicesComponent implements OnInit, AfterViewInit {
   @ViewChild('mapCanvas', { static: true }) mapElement: ElementRef;
   subServiceList: any = [];
@@ -29,29 +31,10 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   userId: any;
   addressList: any;
   defaultLocation: any;
-  markers = [
-    {
-      name: 'Monona Terrace Convention Center',
-      lat: 43.071584,
-      lng: -89.38012
-    },
-    {
-      name: 'Ionic HQ',
-      lat: 43.074395,
-      lng: -89.381056,
-      center: true
-    },
-    {
-      name: 'Afterparty - Brocach Irish Pub',
-      lat: 43.07336,
-      lng: -89.38335
-    },
-    {
-      name: 'Shyam Steel Industries Ltd',
-      lat: 22.573725,
-      lng: 88.431569,
-    }
-  ];
+  locationList:any=[];
+  markers: any;
+  map;
+  InforObj = [];
   constructor(
     public dialog: MatDialog,
     private mainService: MainService,
@@ -88,26 +71,10 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
     this.getCmsDetails('why-10-karma');
     // this.getCmsDetails('why-10-karma');
+    this.getLocation();
   }
-  async ngAfterViewInit() {
-    const googleMaps = await getGoogleMaps(
-      'AIzaSyBozOMarWpi9n-gu7TkXZR3WH36Admg--Q'
-    );
-    const mapEle = this.mapElement.nativeElement;
-    const map = new googleMaps.Map(mapEle, {
-      center: this.markers.find((d: any) => d.center),
-      zoom: 12,
-    });
-    this.markers.forEach((markerData: any) => {
-
-      const marker = new googleMaps.Marker({
-        position: markerData,
-        map,
-        title: markerData.name
-      });
-    });
+  ngAfterViewInit() {
   }
-
 
   getSubCatList(id) {
     this.spinner.show();
@@ -128,7 +95,6 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     );
   }
 
-
   // getNearestUser(id) {
   //   var data = {
   //     'service_id': id
@@ -144,6 +110,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   //     }
   //   )
   // }
+  
   getAddressList(id) {
     console.log("Address List==>");
     this.userService.userlistAddress(id).subscribe(
@@ -197,6 +164,65 @@ export class ServicesComponent implements OnInit, AfterViewInit {
         console.log(error.error);
       }
     )
+  }
+
+  getLocation() {
+
+    this.mainService.getLocation().subscribe(
+      async res => {
+        this.locationList = res['result'];
+        this.locationList.map(item => {
+          item['lat'] = +item['latitude'];          
+          item['lng'] = +item['longitude'];
+        });
+        this.markers = this.locationList;
+        this.markers[0].center = true;
+        console.log('Location List==>', this.markers);
+        await this.initMap();
+      },
+      error => {
+        console.log(error.error);
+      }
+    )
+  }
+
+
+  async initMap() {
+    //const googleMaps = await getGoogleMaps('AIzaSyBozOMarWpi9n-gu7TkXZR3WH36Admg--Q');
+    //const googleMaps = await getGoogleMaps('AIzaSyAkkz_K6d5CBMaY6qOBVSCuybYnP_AkagU');
+    const googleMaps = await getGoogleMaps('AIzaSyC9jspFQCh-gIvZs-CZX523CT_KwVCoz1k');
+   
+
+
+    const mapEle = this.mapElement.nativeElement;
+    const map = new googleMaps.Map(mapEle, {
+      center: this.markers.find((d: any) => d.center),
+      zoom: 10,
+    });
+    this.markers.forEach((markerData: any) => {
+      
+      const marker = new googleMaps.Marker({
+        position: markerData,
+        map,
+        title: markerData.name
+      });
+
+      const infowindow = new google.maps.InfoWindow({
+        content: markerData.name,
+        maxWidth: 200
+    });
+
+    marker.addListener('click', function () {
+      //closeOtherInfo();
+      infowindow.open(marker.get('map'), marker);
+      this.InforObj[0] = infowindow;
+  });
+
+
+
+
+      
+    });
   }
 
   // getSubCatListbyLoc() {
@@ -294,4 +320,7 @@ function getGoogleMaps(apiKey: string): Promise<any> {
       }
     };
   });
+
+ 
+
 }

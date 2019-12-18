@@ -61,7 +61,6 @@ export class SigninComponent implements OnInit {
             localStorage.setItem('userName', res['result']['detail']['name']);
             localStorage.setItem('userEmail', res['result']['detail']['email']);
             localStorage.setItem('userContact', res['result']['detail']['contact']);
-           // localStorage.setItem('userImage', res['result']['profile_image']);
             this.userService.loginStatus(true);
             this.router.navigate(['/home']);
             this.dialogRef.close(true);

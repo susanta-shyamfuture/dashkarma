@@ -1,4 +1,4 @@
-import { Component, OnInit,Optional,Inject } from '@angular/core';
+import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from "../../../core/services/user.service";
@@ -15,10 +15,10 @@ export class AddressComponent implements OnInit {
   submitted = false;
   addTypeList: any = [];
   userId: any;
-  addressList:any=[];
-  editAddress:any;
-  isEdit:boolean;
-  citylist:any;
+  addressList: any = [];
+  editAddress: any;
+  isEdit: boolean;
+  citylist: any;
   constructor(
     public dialogRef: MatDialogRef<AddressComponent>,
     public dialog: MatDialog,
@@ -30,15 +30,10 @@ export class AddressComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.userId = localStorage.getItem('userId');
-   
-    if(data.getAddressData) {
+
+    if (data.getAddressData) {
       this.editAddress = data.getAddressData;
       this.isEdit = true;
-      //  this.addressForm.patchValue({
-      //   addtype: data.getAddressData.type,
-      //   address: data.getAddressData.address,
-      //   pincode: data.getAddressData.pincode
-      // })
       this.addressForm = this.formBuilder.group({
         addtype: [data.getAddressData.type, [Validators.required]],
         address: [data.getAddressData.address, [Validators.required]],
@@ -52,7 +47,6 @@ export class AddressComponent implements OnInit {
     else {
       this.isEdit = false;
       this.addressForm = this.formBuilder.group({
-        // addtype: ['Home', [Validators.required]],
         addtype: ['', [Validators.required]],
         address: ['', [Validators.required]],
         pincode: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^[0-9]*$/)]],
@@ -83,21 +77,19 @@ export class AddressComponent implements OnInit {
     ]
   }
 
-
   getCityList() {
     var data = {
-      "user_type":localStorage.getItem('userType')
+      "user_type": localStorage.getItem('userType')
     }
     this.mainService.getCityList().subscribe(
       res => {
-        this.citylist  =  res['result'];
+        this.citylist = res['result'];
       },
       error => {
         console.log(error);
       }
     )
   }
-
 
   closeSignIn() {
     this.dialogRef.close(true);
@@ -111,9 +103,8 @@ export class AddressComponent implements OnInit {
     if (this.addressForm.invalid) {
       return;
     }
-
     else {
-      if(this.isEdit) {
+      if (this.isEdit) {
         var data = {
           "type": this.addressForm.value.addtype,
           "address": this.addressForm.value.address,
@@ -123,7 +114,7 @@ export class AddressComponent implements OnInit {
           "state": this.addressForm.value.state,
           "service_location": this.addressForm.value.service_location,
           "customer_id": this.userId,
-          "id":this.editAddress.id
+          "id": this.editAddress.id
         }
         this.userService.userupdateAddress(data).subscribe(
           res => {
@@ -132,8 +123,6 @@ export class AddressComponent implements OnInit {
               this.dialogRef.close(true);
               this.dialog.afterAllClosed
                 .subscribe(() => {
-                  // update a variable or call a function when the dialog closes
-                  //this.viewMode = 'loadingPage';
                   this.getAddressList(this.userId);
                 }
                 );
@@ -157,10 +146,6 @@ export class AddressComponent implements OnInit {
       }
       else {
         var data1 = {
-          // "type": this.addressForm.value.addtype,
-          // "address": this.addressForm.value.address,
-          // "pincode": this.addressForm.value.pincode,
-          // "customer_id": this.userId
           "type": this.addressForm.value.addtype,
           "address": this.addressForm.value.address,
           "pincode": this.addressForm.value.pincode,
@@ -177,8 +162,6 @@ export class AddressComponent implements OnInit {
               this.dialogRef.close(true);
               this.dialog.afterAllClosed
                 .subscribe(() => {
-                  // update a variable or call a function when the dialog closes
-                  //this.viewMode = 'loadingPage';
                   this.getAddressList(this.userId);
                 }
                 );
@@ -200,11 +183,8 @@ export class AddressComponent implements OnInit {
           }
         )
       }
-      
-    }
 
-    // display form values on success
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signInForm.value, null, 4));
+    }
   }
 
   getAddressList(id) {
@@ -217,7 +197,5 @@ export class AddressComponent implements OnInit {
       }
     )
   }
-
-
 
 }

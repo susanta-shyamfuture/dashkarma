@@ -125,7 +125,7 @@ export class DetailsComponent implements OnInit {
       res => {
        this.bookingDetails(this.orderid);
        //this.router.navigateByUrl('/mybooking');
-       this.toastr.success("Thanks for complete the order", '', {
+       this.toastr.success("Thanks, You have been succesfully completed this service.", '', {
         timeOut: 3000,
       });
       },
