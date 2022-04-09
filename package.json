@@ -26,7 +26,7 @@
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng-pick-datetime": "^7.0.0",
     "ngx-lightbox": "^2.0.1",
     "ngx-owl-carousel": "^2.0.7",
